@@ -87,11 +87,11 @@ Long story made short, I passed on my second attempt. I submitted my exam report
 Exam Tips
 ---
 Here's a few tips I'd recommend to those heading into their first exam attempt. The following are what I followed for my second exam attempt, after learning what not to do based on the first attempt:
-	1. Get a good night's sleep - I took ZzzQuil to help myself fall asleep. If I didn't, I would have been overthinking/analyzing the exam and not of been able to fall asleep.
-	2. Schedule for an early time slot - I took an 08:00 time slot for my second attempt. This way my mind was fresh from a good night's sleep, and not be fatigued from being up doing other activities.
-	3. Eat - I made sure to eat good (healthy) the day before and the day of the exam. (Bang energy drinks are my go-to source for caffeine)
-	4. Breaks - There's nothing wrong with taking breaks. I took breaks around regular breakfast/lunch/dinner times, and took a few 30 minute breaks just to step away and get some exercise in.
-	5. Go slow, stay calm - You're given 48 hours to complete the exam. You don't need to rush.. the last thing you want to do is rush and make a mistake somewhere along the line without catching it.
+1. Get a good night's sleep - I took ZzzQuil to help myself fall asleep. If I didn't, I would have been overthinking/analyzing the exam and not of been able to fall asleep.
+2. Schedule for an early time slot - I took an 08:00 time slot for my second attempt. This way my mind was fresh from a good night's sleep, and not be fatigued from being up doing other activities.
+3. Eat - I made sure to eat good (healthy) the day before and the day of the exam. (Bang energy drinks are my go-to source for caffeine)
+4. Breaks - There's nothing wrong with taking breaks. I took breaks around regular breakfast/lunch/dinner times, and took a few 30 minute breaks just to step away and get some exercise in.
+5. Go slow, stay calm - You're given 48 hours to complete the exam. You don't need to rush.. the last thing you want to do is rush and make a mistake somewhere along the line without catching it.
 
 Resources
 ---
