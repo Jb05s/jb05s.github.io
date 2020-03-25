@@ -82,6 +82,8 @@ Exam: 2nd Attempt
 ---
 Long story made short, I passed on my second attempt. I submitted my exam report and was eligible for all 90 points. I received the 'We are happy to inform you' email on Christmas Eve. That email was one of the best Christmas presents I could have asked for!
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/osce-cert.png" alt="">
+
 Exam Tips
 ---
 Here's a few tips I'd recommend to those heading into their first exam attempt. The following are what I followed for my second exam attempt, after learning what not to do based on the first attempt:
