@@ -21,17 +21,33 @@ Pre-Registration Challenge
 ---
 <img src="{{ site.url }}{{ site.baseurl }}/images/fc4-me.png" alt="">
 
-Unlike the PWK and WiFu courses, you cannot just sign-up for the CTP course. There's a [pre-registration challenge](http://www.fc4.me/) that needs to be completed. This challenge is meant to test your knowledge to ensure that you're ready for the course. So please, don't try to cheat yourself by trying to Google search the solution that others have posted. Do your due diligence.
+Unlike the PWK and WiFu courses, you cannot just sign-up for the CTP course. There's a [pre-registration challenge](http://www.fc4.me/) that needs to be completed. 
+
+This challenge is meant to test your knowledge to ensure that you're ready for the course. 
+
+So please, don't try to cheat yourself by trying to Google search the solution that others have posted. 
+
+Do your due diligence.
 
 Course Preparation
 ---
-After completing the pre-registration challenge and setting my lab access start date, I attended [@pandatrax](https://twitter.com/pandatrax)'s two-day course called 'Beginner Exploit Writing: Zero-to-Hero Series' that was taught in Charlotte, NC at an ISSA conference. This course went over exploit writing on x86 architecture for Linux and Windows. The topics covered were vanilla overwrites, Structured Exception Handlers (SEH), egghunters, and bypassing Data Execution Prevention (DEP). Overall, it was a great refresher on what I was taught in the Corelan tutorials.
+After completing the pre-registration challenge and setting my lab access start date, I attended [@pandatrax](https://twitter.com/pandatrax)'s two-day course called 'Beginner Exploit Writing: Zero-to-Hero Series' that was taught in Charlotte, NC at an ISSA conference. 
+
+This course went over exploit writing on x86 architecture for Linux and Windows. 
+
+The topics covered were vanilla overwrites, Structured Exception Handlers (SEH), egghunters, and bypassing Data Execution Prevention (DEP). 
+
+Overall, it was a great refresher on what I was taught in the Corelan tutorials.
 
 Lab Environment
 ---
 Once I gained access to the labs, I dedicated all my personal time to studying. 
 
-I was easily spending 5hrs/day on weekdays and 8-10hrs/day on the weekends studying. I understand that many individuals cannot dedicate this much time due to having jobs/families/other obligations. For me, this was feasible at the time because I was single and didn't have any other obligations outside of work.
+I was easily spending 5hrs/day on weekdays and 8-10hrs/day on the weekends studying. 
+
+I understand that many individuals cannot dedicate this much time due to having jobs/families/other obligations. 
+
+For me, this was feasible at the time because I was single and didn't have any other obligations outside of work.
 
 The lab consists of eight modules covering four different topics (two modules per topic), when excluding 'The Networking Angle'.
 
@@ -49,9 +65,17 @@ Lab Approach
 3. Complete the module, while following along with the module videos
 4. Complete the module without module videos or pdf
 
-I didn't move on to the next module until I understood the attack process, and why that process/path was taken. So in other words.. my browser was filled with dozens of bookmarks referencing commands, terms, topics, etc.
+I didn't move on to the next module until I understood the attack process, and why that process/path was taken. 
 
-Once I felt comfortable that I had a solid understanding of the module, I moved on and repeated the same four-step process. After each module I completed, I went back to the previous module(s) and tested my knowledge as sort of a refresher. If I couldn't successfully complete a previous module, I made a note of where I fell short. At the end of each week, if I had any notes written down, I'd go back and do further research on those topics that caused me to fall short.
+So in other words.. my browser was filled with dozens of bookmarks referencing commands, terms, topics, etc.
+
+Once I felt comfortable that I had a solid understanding of the module, I moved on and repeated the same four-step process. 
+
+After each module I completed, I went back to the previous module(s) and tested my knowledge as sort of a refresher. 
+
+If I couldn't successfully complete a previous module, I made a note of where I fell short. 
+
+At the end of each week, if I had any notes written down, I'd go back and do further research on those topics that caused me to fall short.
 
 Exam: 1st Attempt
 ---
