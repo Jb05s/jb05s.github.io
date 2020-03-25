@@ -63,7 +63,7 @@ I signed-up to take the exam two weeks out, giving myself some time to prepare a
 
 After preparing for the next two weeks reviewing some course material, and going through some vulnerable applications found on Exploit-DB (such as VulnServer), I sat for the exam.
 
-I'm not going to do a play-by-play on my exam, but the only things that really need to be highlighted are
+Exam Overview
 ---
 1. I failed; Was eligible for 45 points out of the 90 points available
 2. I still had some learning to do; which isn't a bad thing!
