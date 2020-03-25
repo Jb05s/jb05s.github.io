@@ -33,10 +33,10 @@ The lab consists of eight modules covering four different topics (two modules pe
 
 Topics Covered:
 ---
-   1. The Web Application Angle
-   2. The Backdooring Angle
-   3. The 0-Day Angle
-   4. Advanced Exploitation Techniques 
+1. The Web Application Angle
+2. The Backdooring Angle
+3. The 0-Day Angle
+4. Advanced Exploitation Techniques 
 
 I approached the lab in the following manner for each module:
 ---
