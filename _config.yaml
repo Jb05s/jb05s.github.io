@@ -106,8 +106,7 @@ analytics:
 author:
   name             : "Jeremy Dupuis"
   avatar           : "/assets/avatar.png"
-  bio              : "Pentester with a knack for exploit development.  
-  OSEE | OSCE | OSCP | OSWP"
+  bio              : "Pentester with a knack for exploit development. OSEE | OSCE | OSCP | OSWP"
   location         : "United States"
   linkedin	       : "jeremy-dps/"
   twitter          : "Jb05s"
