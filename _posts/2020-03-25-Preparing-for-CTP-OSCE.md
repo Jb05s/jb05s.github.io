@@ -21,7 +21,7 @@ Unlike the PWK and WiFu courses, you cannot just sign-up for the CTP course. The
 
 Course Preparation
 ---
-After completing the pre-registration challenge and setting my lab access start date, I attended a two-day course called 'Beginner Exploit Writing: Zero-to-Hero Series' that was taught in Charlotte, NC at an ISSA conference. This course went over exploit writing on x86 architecture for Linux and Windows. The topics covered were vanilla overwrites, Structured Exception Handlers (SEH), egghunters, and bypassing Data Execution Prevention (DEP). Overall, it was a great refresher on what I was taught in the Corelan tutorials.
+After completing the pre-registration challenge and setting my lab access start date, I attended [@pandatrax](https://twitter.com/pandatrax))'s' two-day course called 'Beginner Exploit Writing: Zero-to-Hero Series' that was taught in Charlotte, NC at an ISSA conference. This course went over exploit writing on x86 architecture for Linux and Windows. The topics covered were vanilla overwrites, Structured Exception Handlers (SEH), egghunters, and bypassing Data Execution Prevention (DEP). Overall, it was a great refresher on what I was taught in the Corelan tutorials.
 
 Lab Environment
 ---
