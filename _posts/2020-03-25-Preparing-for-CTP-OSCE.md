@@ -6,6 +6,7 @@ excerpt: "Recently, I've been receiving a lot of questions surrounding the CTP c
 ---
 Introduction
 ---
+<img src="{{ site.url }}{{ site.baseurl }}/images/offsec-student-certified-emblem-rgb-osce.png" alt="">
 I want to note that this isn't meant to be a 'course review' necessarily, but more of the approach I took in preparing for the CTP course and exam to become OSCE certified.
 
 Pre-Registration Knowledge
