@@ -5,6 +5,7 @@
 #main {
   @include clearfix;
   margin-left: auto;
+  margin-top: 2em;
   margin-right: auto;
   padding-left: 1em;
   padding-right: 1em;
@@ -15,11 +16,11 @@
   animation-delay: 0.15s;
 
   @include breakpoint($x-large) {
-    max-width: $max-width;
+    max-width: $x-large;
   }
 }
 
-body {
+#body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
