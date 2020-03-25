@@ -13,9 +13,9 @@ I want to note that this isn't meant to be a 'course review' necessarily, but mo
 Pre-Registration Knowledge
 ---
 Before I decided that I wanted to go for the CTP/OSCE, here's where I stood:
-- Held the OSCP/OSWP certifications (Molded the 'Try Harder' mantra in my head)
-- Went through Corelan's Exploit Writing tutorials (Parts 1-3b)
-- Completed the SLAEx86 course offered at PentesterAcademy
+- Held the [OSCP](https://www.offensive-security.com/pwk-oscp/)/[OSWP](https://www.offensive-security.com/wifu-oswp/) certifications (Molding the 'Try Harder' mantra)
+- Went through [Corelan's - Exploit Writing Tutorials (Parts 1-3b)](https://www.corelan.be/index.php/articles/)
+- Completed the SLAEx86 course offered at [PentesterAcademy](https://www.pentesteracademy.com/course?id=3)
 
 Pre-Registration Challenge
 ---
