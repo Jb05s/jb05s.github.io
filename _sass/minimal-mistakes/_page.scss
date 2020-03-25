@@ -23,12 +23,12 @@
 .page {
 
   @include breakpoint($large) {
-    #float: right;
+    float: right;
     width: calc(100% - #{$right-sidebar-width-narrow});
   }
 
   @include breakpoint($x-large) {
-    #float: right;
+    float: right;
     width: calc(100% - #{$right-sidebar-width});
   }
 
