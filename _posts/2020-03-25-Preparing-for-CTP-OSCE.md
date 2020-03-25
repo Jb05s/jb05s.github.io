@@ -68,7 +68,7 @@ Exam Overview
 1. I failed; Was eligible for 45 points out of the 90 points available
 2. I still had some learning to do; which isn't a bad thing!
 
-Note: Although I didn't pass, it was still an amazing experience. Offensive Security provides the right amount of material within the course for you to succeed. It's up you to build on that foundation they're offering, to be successful.
+_Note: Although I didn't pass, it was still an amazing experience. Offensive Security provides the right amount of material within the course for you to succeed. It's up you to build on that foundation they're offering, to be successful._
 
 Post-Exam
 ---
