@@ -33,17 +33,17 @@ The lab consists of eight modules covering four different topics (two modules pe
 
 Topics Covered:
 ---
-    1. The Web Application Angle
-    2. The Backdooring Angle
-    3. The 0-Day Angle
-    4. Advanced Exploitation Techniques 
+   1. The Web Application Angle
+   2. The Backdooring Angle
+   3. The 0-Day Angle
+   4. Advanced Exploitation Techniques 
 
 I approached the lab in the following manner for each module:
 ---
-	1. Read through the module in the pdf
-	2. Watch the correlating videos for the module, while following along in the pdf
-	3. Complete the module, while following along with the module videos
-	4. Complete the module without module videos or pdf
+1. Read through the module in the pdf
+2. Watch the correlating videos for the module, while following along in the pdf
+3. Complete the module, while following along with the module videos
+4. Complete the module without module videos or pdf
 
 I didn't move on to the next module until I understood the attack process, and why that process/path was taken. So in other words.. my browser was filled with dozens of bookmarks referencing commands, terms, topics, etc.
 
@@ -61,8 +61,8 @@ After preparing for the next two weeks reviewing some course material, and going
 
 I'm not going to do a play-by-play on my exam, but the only things that really need to be highlighted are:
 ---
-	1. I failed; Was eligible for 45 points out of the 90 points available
-	2. I still had some learning to do; which isn't a bad thing!
+1. I failed; Was eligible for 45 points out of the 90 points available
+2. I still had some learning to do; which isn't a bad thing!
 
 Note: Although I didn't pass, it was still an amazing experience. Offensive Security provides the right amount of material within the course for you to succeed. It's up you to build on that foundation they're offering, to be successful.
 
