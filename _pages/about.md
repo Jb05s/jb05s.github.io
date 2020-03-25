@@ -3,7 +3,7 @@ title: "About"
 permalink: /about/
 ---
 
-I'm just here so I don't get fined.  
+I'm just here so I won't get fined.  
 
 Just a pentester with a knack for exploit development.  
 
