@@ -28,13 +28,14 @@
   }
 
   @include breakpoint($x-large) {
+    #float: right;
     width: calc(100% - #{$right-sidebar-width});
   }
 
   .page__inner-wrap {
     float: left;
     margin-left: 0;
-    #margin-right: 0;
+    margin-right: 0;
     width: 100%;
     clear: both;
 
@@ -44,7 +45,7 @@
       position: relative;
       float: left;
       margin-left: 0;
-      #margin-right: 0;
+      margin-right: 0;
       width: 100%;
       clear: both;
     }
