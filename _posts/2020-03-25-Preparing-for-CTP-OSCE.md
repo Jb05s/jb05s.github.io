@@ -31,14 +31,14 @@ I was easily spending 5hrs/day on weekdays and 8-10hrs/day on the weekends study
 
 The lab consists of eight modules covering four different topics (two modules per topic), when excluding 'The Networking Angle'.
 
-Topics Covered:
+Topics Covered
 ---
 1. The Web Application Angle
 2. The Backdooring Angle
 3. The 0-Day Angle
 4. Advanced Exploitation Techniques 
 
-I approached the lab in the following manner for each module:
+Lab Approach
 ---
 1. Read through the module in the pdf
 2. Watch the correlating videos for the module, while following along in the pdf
@@ -59,7 +59,7 @@ I signed-up to take the exam two weeks out, giving myself some time to prepare a
 
 After preparing for the next two weeks reviewing some course material, and going through some vulnerable applications found on Exploit-DB (such as VulnServer), I sat for the exam.
 
-I'm not going to do a play-by-play on my exam, but the only things that really need to be highlighted are:
+I'm not going to do a play-by-play on my exam, but the only things that really need to be highlighted are
 ---
 1. I failed; Was eligible for 45 points out of the 90 points available
 2. I still had some learning to do; which isn't a bad thing!
