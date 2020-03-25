@@ -19,6 +19,8 @@ Before I decided that I wanted to go for the CTP/OSCE, here's where I stood:
 
 Pre-Registration Challenge
 ---
+<img src="{{ site.url }}{{ site.baseurl }}/images/fc4-me.png" alt="">
+
 Unlike the PWK and WiFu courses, you cannot just sign-up for the CTP course. There's a pre-registration challenge that needs to be completed. This challenge is meant to test your knowledge to ensure that you're ready for the course. So please, don't try to cheat yourself by trying to Google search the solution that others have posted. Do your due diligence.
 
 Course Preparation
