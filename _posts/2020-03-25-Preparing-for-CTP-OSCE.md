@@ -21,7 +21,7 @@ Pre-Registration Challenge
 ---
 <img src="{{ site.url }}{{ site.baseurl }}/images/fc4-me.png" alt="">
 
-Unlike the PWK and WiFu courses, you cannot just sign-up for the CTP course. There's a pre-registration challenge that needs to be completed. This challenge is meant to test your knowledge to ensure that you're ready for the course. So please, don't try to cheat yourself by trying to Google search the solution that others have posted. Do your due diligence.
+Unlike the PWK and WiFu courses, you cannot just sign-up for the CTP course. There's a [pre-registration challenge](http://www.fc4.me/) that needs to be completed. This challenge is meant to test your knowledge to ensure that you're ready for the course. So please, don't try to cheat yourself by trying to Google search the solution that others have posted. Do your due diligence.
 
 Course Preparation
 ---
