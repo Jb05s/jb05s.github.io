@@ -143,6 +143,8 @@ An object is a static data structure that reside in system memory space and repr
 
 All objects are managed by the Object Manager. The Object Manager is responsible for creating, managing, and terminating objects.  
 
+Let's use _'Process Explorer'_ for further understanding.
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/object-procexplorer.png" alt="">
 
 Kernel code can obtain a direct pointer to an object. In order for user mode code to get access to an object is by using a handle.  
@@ -155,7 +157,11 @@ They're used as shields against user code from directly accessing an object in t
 - The Object Manager is responsible for managing the reference counter
 - Every process has it's own Handle Table
 
+Again, we can use _'Process Explorer'_ to for more of a visual.
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/handle-procexplorer.png" alt="">
+
+As we can see, we're able to view the Handle Table for each process to see the handles and objects residing in that given process.
 
 (Process Explorer Visuals)
 
