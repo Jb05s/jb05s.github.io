@@ -152,7 +152,9 @@ As you can see, based on the line separator, Windows is divided into two parts:
 1. User Mode
 2. Protected Mode
 
-User mode consists of quite a few components; such as several Subsystems, Services, DLLs, etc. Let's break these components down a little bit, just to get an idea of what each component is.
+These two parts have several components associated to them.
+
+Let's break these components down a little bit, just to get an idea of what each component is.
 
 1. User Applications - These are processes that want to perform some kind of task on the operating system; such as CreateFile() via Notepad.exe.
 2. Subsystem DLLs - In order to use the CreateFile() function described in the 'User Application' component, you need to use it's respected subsystem DLL that CreateFile() is implemented (in this case it'd be Kernel32.DLL).
