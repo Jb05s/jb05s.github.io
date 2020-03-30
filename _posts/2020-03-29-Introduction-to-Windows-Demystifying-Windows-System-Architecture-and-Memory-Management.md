@@ -163,8 +163,6 @@ Again, we can use _'Process Explorer'_ to for more of a visual.
 
 As we can see, we're able to view the Handle Table for each process to see the handles and objects residing in that given process.
 
-(Process Explorer Visuals)
-
 Virtual Memory
 ---
 Windows implements virtual memory based on a linear memory model. Every process has it's own private virtual address space.  
