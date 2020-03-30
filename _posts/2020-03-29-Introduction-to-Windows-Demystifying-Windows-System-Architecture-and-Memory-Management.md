@@ -123,13 +123,15 @@ Now that we've got some insight on processes and threads, let's proceed by discu
 
 Objects and Handles
 ---
-Objects are runtime instances of static structures
-- i.e: Process, mutex, event, desktop, file
-Reside in system memory space
-Kernel code can obtain direct pointer to an object.
-In order for user mode code to get access to an object is by using a handle.
-A handle is an index in a table that points to a specifc object in kernel space
-- Shields user code from directly accessing an object
+An object is a static data structure that reside in system memory space and represent runtime resources like processes, threads, etc., and provides information on various attributes (i.e. object type).  
+
+All objects are managed by the Object Manager. The Object Manager is responsible for creating, managing, and terminating objects.  
+
+Kernel code can obtain a direct pointer to an object. In order for user mode code to get access to an object is by using a handle.  
+
+A handle is an index in a table that points to a specifc object in kernel space.  
+
+They're used as shields against user code from directly accessing an object in the kernel.
 - Handle values are always in multiples of 4
 Objects are reference counted; so close the handle, after completing a task with the object
 - The Object Manager is responsible for managing the reference counter
