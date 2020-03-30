@@ -43,13 +43,13 @@ Here's some key differences between User Mode and Kernel Mode:
 
 User Mode (CPL 3)
 ---
-This mode doesn't allow access to operating system code or data, and is denied access to system hardware.
+This mode doesn't allow access to operating system code or data, and is denied access to system hardware.  
 If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
 
 Kernel Mode (Privileged) (CPL 0)
 ---
-In this mode, it has complete access to the kernel and device drivers.
-Additionally, this mode is allowed to access all system resources.
+In this mode, it has complete access to the kernel and device drivers.  
+Additionally, this mode is allowed to access all system resources.  
 Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
 
 Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL and of that of the lesser.
