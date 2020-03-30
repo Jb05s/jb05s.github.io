@@ -56,7 +56,7 @@ User Mode is responsible for running code within user applications.
 This mode doesn't allow access to operating system code or data, and is denied access to system hardware.  
 If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
 
-Kernel Mode (Privileged) (CPL 0) -pg 23-27, 46-49
+Kernel Mode (Privileged) (CPL 0)
 ---
 In this mode, it has complete access to the kernel and device drivers.  
 Additionally, this mode is allowed to access all system resources.  
