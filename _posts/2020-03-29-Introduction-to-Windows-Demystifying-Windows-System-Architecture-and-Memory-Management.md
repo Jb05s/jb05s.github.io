@@ -66,7 +66,7 @@ We can get a bit of a visual by viewing the 'Performance' tab within Task Manage
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/task-manager-performance.png" alt="">
 
-As seen in the visual, we can see when the CPU is performing operations in User Mode vs Kernel Mode. You're able to see this graph layout by right-clicking in the graph and selecting `Show kernel times`.
+As seen in the visual, we can see when the CPU is performing operations in User Mode vs Kernel Mode. You're able to see this graph layout by right-clicking in the graph and selecting `'Show kernel times'`.
 
 Processes
 ---
