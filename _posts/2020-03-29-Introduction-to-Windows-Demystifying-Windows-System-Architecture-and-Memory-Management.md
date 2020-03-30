@@ -60,13 +60,13 @@ Any unhandled exception in kernel mode can result in a system crash, infamously 
 
 Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL and of that of the lesser.
 
-In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called.
+In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called. I'll shine some more light on call gates later in the post, when I talk about the flow of a function call.
 
 We can get a bit of a visual by viewing the 'Performance' tab within Task Manager. See the figure below for detail.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/task-manager-performance.png" alt="">
 
-I'll shine some more light on this later in the post, when I talk about the flow of a function call.
+As seen in the visual, we can see when the CPU is performing operations in User Mode vs Kernel Mode. You're able to see this graph layout by right-clicking in the graph and selecting `Show kernel times`.
 
 Processes
 ---
