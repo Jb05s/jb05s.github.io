@@ -350,7 +350,7 @@ For us to get the absolute address of a kernel routine on a 64-bit system, we'll
 Using Nt!KiServiceTable and the SSN we identified earlier, we can calculate the relative offset to the kernel routine for `NT!NtCreateFile`.
 
 Now that we have the relative offset, we can use that in the following formula to calculate the absolute address for `NT!NtCreateFile`:
-- _'KiServiceTableAddress + (routineOffset>>>4)'_  
+- _'KiServiceTableAddress + (routineOffset >>> 4)'_  
 
 As we can see, we successfully identified that the SSN for `NTDLL!NtCreateFile` correctly points to `NT!NtCreateFile`!
 
