@@ -99,7 +99,11 @@ These are the owners of a window (i.e. Notepad) that receive user-input.
 So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.  
 When you're presented with the "Status - Not Responding", this is saying that the thread has been held up for five or more seconds while trying to complete an operation.
 
-To present a visual on threads, let's take a look at two instanced of Notepad.exe.  
+To present a visual on threads, let's take a look at two instances of Notepad.exe.  
+
+When a user runs an application; such as Notepad.exe, an initial thread is created.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/threads-init-notepad.png" alt="">
 
 In the first instance of Notepad, it will be waiting for the user to request some kind of operation to be performed. Since it's not performing any kind of operation, there should only be one thread assoicated to this process.
 
