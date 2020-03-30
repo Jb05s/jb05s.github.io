@@ -135,6 +135,7 @@ They're used as shields against user code from directly accessing an object in t
 - Handle values are always in multiples of 4  
 - Objects are reference counted
 - The Object Manager is responsible for managing the reference counter
+- Every process has it's own Handle Table
 
 (Process Explorer Visuals - See Windows Internals 'Demo: Objects and Handles')
 
