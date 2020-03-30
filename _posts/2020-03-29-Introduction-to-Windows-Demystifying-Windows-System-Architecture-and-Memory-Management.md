@@ -33,7 +33,7 @@ In the illustration shown above, there's a total of seven layers (or rings) of p
 
 Whenever code executes, it always will have a mode associated with it. This is called the "Thread Access Mode" or better known as the "Current Privilege Level (CPL)"
 
-Windows only uses two of these rings:
+While there may be several rings, Windows only uses two of these rings:
 1. Ring 0 (Kernel Mode); which is the most privileged
 2. Ring 3 (User Mode); which is the least privileged
 
