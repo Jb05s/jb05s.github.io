@@ -168,7 +168,7 @@ However, upon Windows 8.1 release, the virtual memory space expanded.
 <img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-layout-81.png" alt="">
 
 If you noticed, the 64-bit architecture virtual memory layout has a section that's 'Unmapped'.  
-This space is unmapped because of windows resritctions and limitations in CPUs, at this time.
+This space is unmapped because of windows restrictions and limitations in CPUs, at this time.
 
 General Architecture of Windows
 ---
