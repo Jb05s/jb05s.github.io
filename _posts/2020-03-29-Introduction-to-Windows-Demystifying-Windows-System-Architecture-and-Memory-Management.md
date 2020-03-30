@@ -271,7 +271,7 @@ Let's see a little more detail on what's going on in the NtCreateFile() function
 
 Notice in the screen capture above the `mov eax, 55h` instruction. This instruction discloses the System Service Number (SSN) for the NtCreateFile() function.
 
-A System Service Number (SSN) is a number in a array managed by the System Service Descriptor Table (SSDT).
+A System Service Number (SSN) is a number in an array managed by the System Service Descriptor Table (SSDT).
 
 When a program in User Space calls a function, in our case `Kernel32!CreateFileW`, eventually the execution of code is transferred to `NTDLL!NtCreateFile` in NTDLL.DLL.  
 Then NTDLL.DLL will use syscall or sysenter to the kernel routine `Nt!NtCreateFile`.  
