@@ -2,7 +2,7 @@
 title: "Introduction to Windows: Demystifying Windows System Architecture and Memory Management"
 date: 2020-03-29
 tags: [posts]
-excerpt: "How Does Windows Work?! Demystifying Memory Management and Processes/Threads"
+excerpt: "How Does Windows Work?! Let's talk about Windows Memory Management and General Architecture"
 ---
 Overview
 ---
@@ -25,20 +25,9 @@ In the illustration shown above, there's a total of seven layers (or rings) of p
 
 Whenever code executes, it always will have a mode associated with it. This is called the "Thread Access Mode" or better known as the "Current Privilege Level (CPL)"
 
-Windows only uses two of those rings:
+Windows only uses two of these rings:
 1. Ring 0 (Kernel Mode); which is the most privileged
 2. Ring 3 (User Mode); which is the least privileged
-
-User Mode (CPL3)
----
-This mode doesn't allow access to operating system code or data, and is denied access to system hardware.
-If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
-
-Kernel Mode (Privileged) (CPL 0)
----
-In this mode, it has complete access to the kernel and device drivers.
-Additionally, this mode is allowed to access all system resources.
-Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
 
 Here's some key differences between User Mode and Kernel Mode:
 1. User Mode (CPL 3)
@@ -52,15 +41,28 @@ Here's some key differences between User Mode and Kernel Mode:
 	- Doesn't need to call System Calls (But has the ability)
 	- Has unrestricted access
 
+User Mode (CPL 3)
+---
+This mode doesn't allow access to operating system code or data, and is denied access to system hardware.  
+If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
+
+Kernel Mode (Privileged) (CPL 0)
+---
+In this mode, it has complete access to the kernel and device drivers.  
+Additionally, this mode is allowed to access all system resources.  
+Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
+
 Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL and of that of the lesser.
+
+In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called.
 
 I'll shine some more light on this later in the post, when I talk about the flow of a function call.
 
 Processes
 ---
-Processes are management containers for threads to execute code. 
-There's multiple occasions where I've heard "There's a process running..". This is an inaccurate statement. A process is never "running". 
-A process is simply a container (or manager) resourcing threads. Threads are actually "running" or executing code, not processes.
+Processes are management containers for threads to execute code.  
+There's multiple occasions where I've heard "There's a process running..". This is an inaccurate statement. A process is never "running".  
+A process is simply a container (or manager) resourcing threads. Threads are actually "running" or executing code, not processes.  
 A process consists of the following:
 - A private virtual address space
 - An executable program containing data that can be executed
@@ -72,8 +74,7 @@ A process consists of the following:
 
 Threads
 ---
-Threads, as mentioned earlier, are entities scheduled by the kernel to execute code.
-- Multiple threads can run concurrently on multiple CPUs
+Threads, as mentioned earlier, are entities scheduled by the kernel to execute code.  
 A thread consists of the following:
 - The state of the CPU registers
 - Current Access Mode (User or Kernel)
@@ -84,8 +85,8 @@ A thread consists of the following:
 - A priority (0 (Lowest)-31 (Highest))
 - A state: Running, Ready, Waiting
 
-These are the owners of a window (i.e. Notepad) that receive user-input.
-So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.
+These are the owners of a window (i.e. Notepad) that receive user-input.  
+So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.  
 When you're presented with the "Status - Not Responding", this is saying that the thread has been held up for five or more seconds while trying to complete an operation.
 
 
@@ -94,20 +95,27 @@ When you're presented with the "Status - Not Responding", this is saying that th
 Objects and Handles
 ---
 Objects are runtime instances of static structures
-	- i.e: Process, mutex, event, desktop, file
+- i.e: Process, mutex, event, desktop, file
 Reside in system memory space
 Kernel code can obtain direct pointer to an object.
 In order for user mode code to get access to an object is by using a handle.
 A handle is an index in a table that points to a specifc object in kernel space
-	- Shields user code from directly accessing an object
-	- Handle values are always in multiples of 4
+- Shields user code from directly accessing an object
+- Handle values are always in multiples of 4
 Objects are reference counted; so close the handle, after completing a task with the object
-	- The Object Manager is responsible for managing the reference counter
+- The Object Manager is responsible for managing the reference counter
 
 (Process Explorer Visuals - See Windows Internals 'Demo: Objects and Handles')
 
 Virtual Memory
 ---
+Windows implements virtual memory based on a linear memory model. Every process has it's own private virtual address space.  
+The virtual address space for a process is divided into two parts; a User Space and a Kernel Space.
+
+Let's use the following diagram to go into more detail.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-mapping.png" alt="">
+
 Virtual memory may be mapped to physical memory, but can also be stored on disk (Page file)
 Processes access memory (via a pointer) regardless of where it resides
 - The memory manager handles the mapping of virtual to physical pages
@@ -126,8 +134,12 @@ When a process allocates memory, it is mapped to physcial memory (Blue blocks in
 
 Virtual Memory Layout
 ---
-4 GB - 32bit (2GB User Process Space (0x00000000 - 0x7FFFFFFF) / 2GB System Space (0x80000000 - 0xFFFFFFFF))
-256 TB - 64bit (1288TB User Process Space (0x00000000'00000000 - 0x00007FFF'FFFFFFFF) / 128TB System (Kernel) Space (0xFFFF0800'00000000 - 0xFFFFFFFF'FFFFFFFF))
+
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-layout.png" alt="">
+
+4 GB - 32bit (2GB User Process Space (0x00000000 - 0x7FFFFFFF) / 2GB System Space (0x80000000 - 0xFFFFFFFF))  
+14 TB - 64bit (8 TB User Process Space (0x00000000'00000000 - 0x00007FFF'FFFFFFFF) / 6 TB System (Kernel) Space (0xFFFF0800'00000000 - 0xFFFFFFFF'FFFFFFFF))
 - The remainder of memory space for x64 is unmapped, due to Windows restrictions and/or due to limitations in CPUs
 
 In task manager or process explorer, under the 'Details' tab, you can see the 'Memory (Private Working Set)' column.
@@ -143,7 +155,7 @@ In task manager or process explorer, under the 'Details' tab, you can see the 'M
 
 General Architecture of Windows
 ---
-Now that we've covered what processes, threads, objects and handles, and virtual memeory. Let's first go over the Windows general architecture.
+Now that we've covered what processes, threads, objects and handles, and virtual memory.. let's go over the Windows general architecture.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/general-arch.png" alt="">
 
@@ -153,7 +165,9 @@ As you can see, based on the line separator, Windows is divided into two parts:
 1. User Mode
 2. Protected Mode
 
-User mode consists of quite a few components; such as several Subsystems, Services, DLLs, etc. Let's break these components down a little bit, just to get an idea of what each component is.
+These two parts have several components associated to them.
+
+Let's break these components down a little bit, just to get an idea of what each component is.
 
 1. User Applications - These are processes that want to perform some kind of task on the operating system; such as CreateFile() via Notepad.exe.
 2. Subsystem DLLs - In order to use the CreateFile() function described in the 'User Application' component, you need to use it's respected subsystem DLL that CreateFile() is implemented (in this case it'd be Kernel32.DLL).
