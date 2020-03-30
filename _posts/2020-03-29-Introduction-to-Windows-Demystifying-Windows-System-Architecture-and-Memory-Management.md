@@ -331,7 +331,7 @@ We've just identified the System Service Number (SSN) for NTDLL!NtCreateFile, an
 
 Let's look a little deeper into that System Service Number (SSN); which was fingerprinted as 55h in the `mov eax, 55h` instruction.
 
-As mentioned before, the System Service Descriptor Table (SSDT) manages an array of addresses to kernel routines. These routines are index pointers to the NT system API calls; such as NT!NtCreateFile.
+As mentioned before, the System Service Descriptor Table (SSDT) manages an array of addresses to kernel routines. These routines are index pointers to the NT system API calls; such as NT!NtCreateFile.  
 
 Let's see if we can verify that the NTDLL!CreateFile System Service Number (SSN) is actually correct!
 
