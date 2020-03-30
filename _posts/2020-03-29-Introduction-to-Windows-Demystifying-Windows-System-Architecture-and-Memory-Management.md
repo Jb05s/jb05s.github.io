@@ -17,9 +17,13 @@ Here are the topics I will touch upon in this post:
 
 While all of these topics could have their own individual blog post, this blog post is meant to be an introduction. I may release posts in the future that go a little more in-depth.
 
+I'm going to walk through the process of what happens when you, as a user, perform everyday tasks on a Windows operating system. This walkthrough will take you "under the hood" of what goes on in Windows.
+
+Let's jump right into it!
+
 Kernel Mode vs User Mode
 ---
-In Windows, to protect user applications from accessing critical operating system data, Windows splits the processor up into two access modes. These two modes are User mode and Kernel Mode.  
+To begin, in Windows, to protect user applications from accessing critical operating system data, Windows splits the processor up into two access modes. These two modes are User mode and Kernel Mode.  
 
 This schema ensures that any application that's performing unintended actions won't disrupt the stability/avilability of the overall system.  
 
