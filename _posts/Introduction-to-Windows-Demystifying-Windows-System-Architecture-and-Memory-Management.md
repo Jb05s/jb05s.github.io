@@ -142,7 +142,7 @@ In task manager or process explorer, under the 'Details' tab, you can see the 'M
 
 General Architecture of Windows
 ---
-Now that we've covered what processes, threads, objects and handles, and virtual memeory. Let's first go over the Windows general architecture.
+Now that we've covered what processes, threads, objects and handles, and virtual memory.. let's go over the Windows general architecture.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/general-arch.png" alt="">
 
