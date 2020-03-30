@@ -19,6 +19,10 @@ While all of these topics could have their own individual blog post, this blog p
 
 Kernel Mode vs User Mode
 ---
+In Windows, to protect user applications from accessing critical operating system data, Windows splits the processor up into two access modes. These two modes are User mode and Kernel Mode.  
+
+This schema ensures that any application that's performing unintended actions won't disrupt the stability/avilability of the overall system.  
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/privilege-rings.png" alt="">
 
 In the illustration shown above, there's a total of seven layers (or rings) of protection.
@@ -43,10 +47,12 @@ Here's some key differences between User Mode and Kernel Mode:
 
 User Mode (CPL 3)
 ---
+User Mode is responsible for running code within user applications.
+
 This mode doesn't allow access to operating system code or data, and is denied access to system hardware.  
 If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
 
-Kernel Mode (Privileged) (CPL 0)
+Kernel Mode (Privileged) (CPL 0) -pg 23-27, 46-49
 ---
 In this mode, it has complete access to the kernel and device drivers.  
 Additionally, this mode is allowed to access all system resources.  
@@ -55,6 +61,10 @@ Any unhandled exception in kernel mode can result in a system crash, infamously 
 Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL and of that of the lesser.
 
 In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called.
+
+We can get a bit of a visual by viewing the 'Performance' tab within Task Manager. See the figure below for detail.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/task-manager-performance.png" alt="">
 
 I'll shine some more light on this later in the post, when I talk about the flow of a function call.
 
@@ -133,6 +143,9 @@ When a process allocates memory, it is mapped to physcial memory (Blue blocks in
 		- Windows will try and share resources as much as possible, if it makes sense to.
 
 In task manager or process explorer, under the 'Details' tab, you can see the 'Memory (Private Working Set)' column.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/private-working-set.png" alt="">
+
 - 'Private' meaning the memory is not shared
 	- Allocating memory via 'malloc' is considered private memory, this is what is shown
 	- Loading a DLL is sharable memory, and isn't shown in this column but in the 'Memory (Shared Working Set)' column
@@ -141,7 +154,7 @@ In task manager or process explorer, under the 'Details' tab, you can see the 'M
 	- This column shows how much memory is being used by the process
 - The values under this column are always divisible by 4 (The size of a memory page)
 
-(Windbg visuals / Process Explorer (or Task Manager) Visuals / VMMap visuals)
+<img src="{{ site.url }}{{ site.baseurl }}/images/commit-memory-size.png" alt="">
 
 Virtual Memory Layout
 ---
