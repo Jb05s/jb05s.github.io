@@ -59,7 +59,9 @@ If a crash occurs in this mode, the system is not effected, only in the applicat
 Kernel Mode (Privileged) (CPL 0)
 ---
 In this mode, it has complete access to the kernel and device drivers.  
+
 Additionally, this mode is allowed to access all system resources.  
+
 Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/bsod.png" alt="">
