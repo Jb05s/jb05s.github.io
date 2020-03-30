@@ -209,6 +209,8 @@ User mode can transition to Kernel mode when threads in user mode are performing
 
 Let's dive a little deeeper into this process by following going through the components described in the previous section. Let's make use the following graphic to provide some visualization.
 
+_Note: I will be demonstrating the flow of a function call on Windows 10 (x64) RedStone 2._
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow1.png" alt="">
 
 When we request an operation; such as CreateFile(), the following process occurs:
@@ -308,6 +310,44 @@ Now that we've seen what goes on in User Mode leading up to the transition from 
 		- The HAL insolates the hardware from the software
 			- An example is if a driver needs to register for an interrupt service, it doesn't need to get into the actual hardware (Interrupt Controller)
 			- Instead the driver can go through the exposed functions provided by the HAL (but this isn't mandatory)
+
+As we did in the previous section, let's try to make a little more sense of this flow using WinDbg.
+
+In this situation, we won't simply be attaching to the Notepad.exe via the 'Open Executable' option in WinDbg.
+
+For this, we'll be using LiveKD from the [Windows SysInternals Suite](https://live.sysinternals.com/).
+
+If you're following along, let's amke sure your environment is setup correctly.
+
+After downloading LiveKD, we need to place the module in the same directory WinDbg is kept.  
+
+Upon placing LiveKD in the appropriate directory also containing WinDbg, we can proceed by opening an Administative Command Prompt in the directory containing both modules.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/livekd-w.png" alt="">
+
+Now that we're successfully debugging the live system, let's pick-up where we left off in the previous section.  
+
+We've just identified the System Service Number (SSN) for NTDLL!NtCreateFile, and made it up to the `syscall` instruction.  
+
+Let's look a little deeper into that System Service Number (SSN); which was fingerprinted as 55h in the `mov eax, 55h` instruction.
+
+As mentioned before, the Sysytem Service Descriptor Table (SSDT) manages an array of addresses to kernel routines. These routines are index pointers to the NT system API calls; such as NT!NtCreateFile.
+
+Let's see if we can verify that the NTDLL!CreateFile System Service Number (SSN) is actually correct!
+
+We can validate this by using WinDbg to analyze the System Service Descriptor Table (SSDT).
+
+In WinDbg, we can see the Service Descriptor Table structure by using the `x nt!KiService*` command. This will provide us the information to the pointer of the SSDT itself - `NT!KiServiceTable`.
+
+From here, we can dump the SSDT with the `dq NT!KiServiceTable` command. This command will output provide us with the relative offset to the kernel routines, at least on 64-bit architecture.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-kiservice.png" alt="">
+
+For us to get the absolute address of a kernel routine on a 64-bit system, we'll have to do the following illustrated in the visual below.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-kiservicetable.png" alt="">
+
+As we can see, using the Nt!KiServiceTable and the SSN we identified earlier in the formula _'KiServiceTableAddress + (routineOffset>>>4)'_, we can successfully identify that the SSN for `NTDLL!NtCreateFile` correctly points to `NT!NtCreateFile`!
 
 Below is another example on the flow of a function call for the ReadFile() function (alternate graphic format).
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow2.png" alt="">
