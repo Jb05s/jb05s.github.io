@@ -76,7 +76,7 @@ Processes
 ---
 Processes are management containers for threads to execute code.  
 There's multiple occasions where I've heard "There's a process running..". This is an inaccurate statement. A process is never "running".  
-A process is simply a container (or manager) resourcing threads. Threads are actually "running" or executing code, not processes.  
+A process is simply a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
 A process consists of the following:
 - A private virtual address space
 - An executable program containing data that can be executed
@@ -84,9 +84,16 @@ A process consists of the following:
 - An access token; Used for security checks when accessing shared resources
 - Manage one or more threads; the entity that performs code execution
 
-(Process Explorer visuals)
+We can view the list of current processes in _'Task Manager'_ or _'Process Explorer'_, as seen in the figure below.
 
-(Walk through the data structure in WinDbg (ie. EPROCESS, KTHREADS))
+<img src="{{ site.url }}{{ site.baseurl }}/images/processes.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/processes-procexplorer.png" alt="">
+
+Process Creation
+---
+
+(Walk through the data structure in WinDbg (ie. EPROCESS, KPROCESS, KTHREADS, PEB, etc.))
 
 Threads
 ---
