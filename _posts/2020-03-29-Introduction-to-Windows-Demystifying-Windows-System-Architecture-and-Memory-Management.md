@@ -302,7 +302,7 @@ Now that we've seen what goes on in User Mode leading up to the transition from 
 - The 'Executive' layer take the NtCreateFile() request received and passes it along to a lower level in Kernel Mode
 	- It can be passed to one of two components: 'Device Drivers' or the 'Kernel'
 		- Kernel: Provides important OS facilities (Thread Scheduling, Handling Interrupts, etc.)
-		- Device Drivers: A loadable kernel model (something that can be created by developers)
+		- Device Drivers: A loadable kernel module (something that can be created by developers)
 	- In this example, the 'Executive' layer will pass the service request to the 'Device Driver' component
 		- This is because CreateFile() function, since Windows utilizes the NTFS file system model, by default (NTFS.SYS)
 - Once the service request is received by NTFS.SYS, the service request operation will commence
@@ -331,7 +331,7 @@ We've just identified the System Service Number (SSN) for NTDLL!NtCreateFile, an
 
 Let's look a little deeper into that System Service Number (SSN); which was fingerprinted as 55h in the `mov eax, 55h` instruction.
 
-As mentioned before, the Sysytem Service Descriptor Table (SSDT) manages an array of addresses to kernel routines. These routines are index pointers to the NT system API calls; such as NT!NtCreateFile.
+As mentioned before, the System Service Descriptor Table (SSDT) manages an array of addresses to kernel routines. These routines are index pointers to the NT system API calls; such as NT!NtCreateFile.
 
 Let's see if we can verify that the NTDLL!CreateFile System Service Number (SSN) is actually correct!
 
@@ -339,7 +339,7 @@ We can validate this by using WinDbg to analyze the System Service Descriptor Ta
 
 In WinDbg, we can see the Service Descriptor Table structure by using the `x nt!KiService*` command. This will provide us the information to the pointer of the SSDT itself - `NT!KiServiceTable`.
 
-From here, we can dump the SSDT with the `dq NT!KiServiceTable` command. This command will output provide us with the relative offset to the kernel routines, at least on 64-bit architecture.
+From here, we can dump the SSDT with the `dq NT!KiServiceTable` command. This command output will provide us with the relative offset to the kernel routines, at least on 64-bit architecture.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/windbg-kiservice.png" alt="">
 
