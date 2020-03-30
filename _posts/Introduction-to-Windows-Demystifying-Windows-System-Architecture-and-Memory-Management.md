@@ -41,7 +41,7 @@ Here's some key differences between User Mode and Kernel Mode:
 	- Doesn't need to call System Calls (But has the ability)
 	- Has unrestricted access
 
-User Mode (CPL3)
+User Mode (CPL 3)
 ---
 This mode doesn't allow access to operating system code or data, and is denied access to system hardware.
 If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
