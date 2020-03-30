@@ -356,6 +356,10 @@ As we can see, we successfully identified that the SSN for `NTDLL!NtCreateFile` 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/say-whattt.png" alt="">
 
+We could use this same formula to calculate all the SSDT routines, if we wanted to. We can see this in action in the screenshot shown below.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/enum-ssdt.png" alt="">
+
 Below is another example on the flow of a function call for the ReadFile() function (alternate graphic format).
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow2.png" alt="">
 
