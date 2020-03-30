@@ -132,8 +132,8 @@ Kernel code can obtain a direct pointer to an object. In order for user mode cod
 A handle is an index in a table that points to a specifc object in kernel space.  
 
 They're used as shields against user code from directly accessing an object in the kernel.
-- Handle values are always in multiples of 4
-Objects are reference counted; so close the handle, after completing a task with the object
+- Handle values are always in multiples of 4  
+- Objects are reference counted
 - The Object Manager is responsible for managing the reference counter
 
 (Process Explorer Visuals - See Windows Internals 'Demo: Objects and Handles')
