@@ -29,17 +29,6 @@ Windows only uses two of these rings:
 1. Ring 0 (Kernel Mode); which is the most privileged
 2. Ring 3 (User Mode); which is the least privileged
 
-User Mode (CPL3)
----
-This mode doesn't allow access to operating system code or data, and is denied access to system hardware.
-If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
-
-Kernel Mode (Privileged) (CPL 0)
----
-In this mode, it has complete access to the kernel and device drivers.
-Additionally, this mode is allowed to access all system resources.
-Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
-
 Here's some key differences between User Mode and Kernel Mode:
 1. User Mode (CPL 3)
 	- Cannot directly access hardware
@@ -51,6 +40,17 @@ Here's some key differences between User Mode and Kernel Mode:
 	- Can access any part of Virtual Memory
 	- Doesn't need to call System Calls (But has the ability)
 	- Has unrestricted access
+
+User Mode (CPL3)
+---
+This mode doesn't allow access to operating system code or data, and is denied access to system hardware.
+If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
+
+Kernel Mode (Privileged) (CPL 0)
+---
+In this mode, it has complete access to the kernel and device drivers.
+Additionally, this mode is allowed to access all system resources.
+Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
 
 Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL and of that of the lesser.
 
