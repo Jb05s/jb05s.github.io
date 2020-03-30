@@ -86,6 +86,8 @@ A process consists of the following:
 
 (Process Explorer visuals)
 
+(Walk through the data structure in WinDbg (ie. EPROCESS, KTHREADS))
+
 Threads
 ---
 Threads, as mentioned earlier, are entities scheduled by the kernel to execute code.  
