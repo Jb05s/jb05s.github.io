@@ -219,7 +219,7 @@ Let's take a user application; such as Notepad.exe, and let's say it wants to cr
 	- NTDLL.DLL is the lowest layer in User Mode, and is the intermediary between User Mode and Kernel Mode
 - As stated before, NTDLL.DLL is responsible for the transition between User Mode and Kernel Mode, for the thread requesting service to CreateFile()
 	- NTDLL.DLL has its own native api call for CreateFile() called 'NtCreateFile()'
-	- This step is where we see the syscall/sysenter (x86/x64) call to jump from User Mode to Kernel Mode
+	- This step is where we see the sysenter/syscall (x86/x64) call to jump from User Mode to Kernel Mode
 
 To make a little more sense of this, let's take a look at these first few steps in WinDbg.
 
@@ -274,9 +274,19 @@ Notice in the screen capture above the `mov eax, 55h` instruction. This instruct
 A System Service Number (SSN) is a number in an array managed by the System Service Descriptor Table (SSDT).
 
 When a program in User Space calls a function, in our case `Kernel32!CreateFileW`, eventually the execution of code is transferred to `NTDLL!NtCreateFile` in NTDLL.DLL.  
-Then NTDLL.DLL will use syscall or sysenter to the kernel routine `Nt!NtCreateFile`.  
+Then NTDLL.DLL will use `syscall` or `sysenter` to the kernel routine `Nt!NtCreateFile`.  
 
 We'll cover a little more on System Service Numbers (SSNs) and the System Service Descriptor Table (SSDT) in the next section when we can see it in action.
+
+If we keep tracing through the instructions, we'll see that we eventually hit the `syscall` instruction.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-ntcreatefile-syscall.png" alt="">
+
+Now, if we were to proceed with the execution of this function, we'll see that we don't see anything happening in Kernel Mode.  
+
+Since we're debugging the application itself, we won't be able to analyze anything happening in Kernel Mode.
+
+We'll analyze what's happening in Kernel Mode, coming up in the next section.
 
 Function Call Flow (Part 2)
 ---
