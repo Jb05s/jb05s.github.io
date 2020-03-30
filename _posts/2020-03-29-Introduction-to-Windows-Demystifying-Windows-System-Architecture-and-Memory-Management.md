@@ -100,7 +100,7 @@ We can view the list of current processes in _'Task Manager'_ or _'Process Explo
 Process Creation
 ---
 
-(Walk through th e data structure in WinDbg (ie. EPROCESS, KPROCESS, KTHREADS, PEB, etc.))
+(Walk through the data structure in WinDbg (ie. EPROCESS, KPROCESS, KTHREADS, PEB, etc.))
 
 Threads
 ---
