@@ -58,9 +58,9 @@ I'll shine some more light on this later in the post, when I talk about the flow
 
 Processes
 ---
-Processes are management containers for threads to execute code. 
-There's multiple occasions where I've heard "There's a process running..". This is an inaccurate statement. A process is never "running". 
-A process is simply a container (or manager) resourcing threads. Threads are actually "running" or executing code, not processes.
+Processes are management containers for threads to execute code.  
+There's multiple occasions where I've heard "There's a process running..". This is an inaccurate statement. A process is never "running".  
+A process is simply a container (or manager) resourcing threads. Threads are actually "running" or executing code, not processes.  
 A process consists of the following:
 - A private virtual address space
 - An executable program containing data that can be executed
