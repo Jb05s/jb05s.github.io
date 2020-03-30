@@ -219,6 +219,26 @@ Let's take a user application; such as Notepad.exe, and let's say it wants to cr
 	- NTDLL.DLL is the lowest layer in User Mode, and is the intermediary between User Mode and Kernel Mode
 - As stated before, NTDLL.DLL is responsible for the transition between User Mode and Kernel Mode, for the thread requesting service to CreateFile()
 	- NTDLL.DLL has its own native api call for CreateFile() called 'NtCreateFile()'
+	- This step is where we see the syscall/sysenter (x86/x64) call to jump from User Mode to Kernel Mode
+
+To make a little more sense of this, let's take a look at these first few steps in WinDbg.
+
+In order to debug an application in WinDbg, we'll open up Notepad.exe under the 'Open an Executable' option under the 'File' tab.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/open-executable.png" alt="">
+
+Once we attach WinDbg to Notepad, we'll see that we automatically get presented with a breakpoint.
+
+From here, to demonstrate some of the other topics we've covered up to this point, we can look at the current threads running and its associated process for Notepad.exe.
+
+The process identifier for Notepad.exe (Using Task Manager):  
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-tilde-notepad-process.png" alt="">
+
+The thread identifier for Notepad.exe (Using Process Explorer):
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-tilde-notepad-thread.png" alt="">
+
 - After NTDLL.DLL transitions the thread's service request from User Mode to Kernel Mode, we reach the upper layer of Kernel Mode, known as 'Executive'
 	- This layer is reached by calling a function within an NTDLL function
 	- The 'Executive' consists of many components; such as the Memory and IO Managers, etc.
