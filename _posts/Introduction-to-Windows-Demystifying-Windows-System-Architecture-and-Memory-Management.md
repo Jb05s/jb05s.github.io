@@ -72,8 +72,7 @@ A process consists of the following:
 
 Threads
 ---
-Threads, as mentioned earlier, are entities scheduled by the kernel to execute code.
-- Multiple threads can run concurrently on multiple CPUs
+Threads, as mentioned earlier, are entities scheduled by the kernel to execute code.  
 A thread consists of the following:
 - The state of the CPU registers
 - Current Access Mode (User or Kernel)
