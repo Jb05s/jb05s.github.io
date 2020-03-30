@@ -2,7 +2,7 @@
 title: "Introduction to Windows: Demystifying Windows System Architecture and Memory Management"
 date: 2020-03-29
 tags: [posts]
-excerpt: "How Does Windows Work?! Let's talk about Windows Memory Management and General Architecture"
+excerpt: "How does Windows work?! Let's talk about how Windows manages memory and its general architecture works"
 ---
 Overview
 ---
