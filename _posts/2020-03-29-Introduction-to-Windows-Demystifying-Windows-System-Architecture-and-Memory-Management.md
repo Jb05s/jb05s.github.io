@@ -54,6 +54,7 @@ User Mode (CPL 3)
 User Mode is responsible for running code within user applications.
 
 This mode doesn't allow access to operating system code or data, and is denied access to system hardware.  
+
 If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
 
 Kernel Mode (Privileged) (CPL 0)
