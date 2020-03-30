@@ -297,17 +297,17 @@ Now that we've seen what goes on in User Mode leading up to the transition from 
 	- The 'Executive' consists of many components; such as the Memory and IO Managers, etc.
 		- This layer also performs some security checks, but does nothing in terms of implementation of the thread service request
 		- The handle is checked here, in order to call the appropriate driver, to continue with the service request
-	- The 'Executive' layer take the NtCreateFile() request received and passes it along to a lower level in Kernel Mode
-		- It can be passed to one of two components: 'Device Drivers' or the 'Kernel'
-			- Kernel: Provides important OS facilities (Thread Scheduling, Handling Interrupts, etc.)
-			- Device Drivers: A loadable kernel model (something that can be created by developers)
-		- In this example, the 'Executive' layer will pass the service request to the 'Device Driver' component
-			- This is because CreateFile() function, since Windows utilizes the NTFS file system model, by default (NTFS.SYS)
-	- Once the service request is received by NTFS.SYS, the service request operation will commence
-		- The device driver may need to go through the HAL
-			- The HAL insolates the hardware from the software
-				- An example is if a driver needs to register for an interrupt service, it doesn't need to get into the actual hardware (Interrupt Controller)
-				- Instead the driver can go through the exposed functions provided by the HAL (but this isn't mandatory)
+- The 'Executive' layer take the NtCreateFile() request received and passes it along to a lower level in Kernel Mode
+	- It can be passed to one of two components: 'Device Drivers' or the 'Kernel'
+		- Kernel: Provides important OS facilities (Thread Scheduling, Handling Interrupts, etc.)
+		- Device Drivers: A loadable kernel model (something that can be created by developers)
+	- In this example, the 'Executive' layer will pass the service request to the 'Device Driver' component
+		- This is because CreateFile() function, since Windows utilizes the NTFS file system model, by default (NTFS.SYS)
+- Once the service request is received by NTFS.SYS, the service request operation will commence
+	- The device driver may need to go through the HAL
+		- The HAL insolates the hardware from the software
+			- An example is if a driver needs to register for an interrupt service, it doesn't need to get into the actual hardware (Interrupt Controller)
+			- Instead the driver can go through the exposed functions provided by the HAL (but this isn't mandatory)
 
 Below is another example on the flow of a function call for the ReadFile() function (alternate graphic format).
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow2.png" alt="">
