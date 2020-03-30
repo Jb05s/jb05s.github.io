@@ -309,7 +309,7 @@ Now that we've seen what goes on in User Mode leading up to the transition from 
 				- An example is if a driver needs to register for an interrupt service, it doesn't need to get into the actual hardware (Interrupt Controller)
 				- Instead the driver can go through the exposed functions provided by the HAL (but this isn't mandatory)
 
-Below is another example for the ReadFile() function call.
+Below is another example on the flow of a function call for the ReadFile() function (alternate graphic format).
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow2.png" alt="">
 
 References
