@@ -111,7 +111,11 @@ Alternatively, in the second instance of Notepad, we're going to perform an oper
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-compare.png" alt="">
 
-(Process Explorer visuals)
+If you'd like to see each individual thread, the thread identifier (TID), etc., we can use _'Process Explorer'_.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/thread-procexplorer.png" alt="">
+
+Now that we've got some insight on processes and threads, let's proceed by discussing what objects and handles are, and how they come into play.
 
 Objects and Handles
 ---
