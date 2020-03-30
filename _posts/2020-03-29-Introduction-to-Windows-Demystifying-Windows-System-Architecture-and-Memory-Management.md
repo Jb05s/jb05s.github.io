@@ -278,6 +278,10 @@ Then NTDLL.DLL will use syscall or sysenter to the kernel routine `Nt!NtCreateFi
 
 We'll cover a little more on System Service Numbers (SSNs) and the System Service Descriptor Table (SSDT) in the next section when we can see it in action.
 
+Function Call Flow (Part 2)
+---
+Now that we've seen what goes on in User Mode leading up to the transition from User Mode to Kernel Mode, let's go through what happens in Kernel Mode.
+
 - After NTDLL.DLL transitions the thread's service request from User Mode to Kernel Mode, we reach the upper layer of Kernel Mode, known as 'Executive'
 	- This layer is reached by calling a function within an NTDLL function
 	- The 'Executive' consists of many components; such as the Memory and IO Managers, etc.
@@ -293,7 +297,7 @@ We'll cover a little more on System Service Numbers (SSNs) and the System Servic
 		- The device driver may need to go through the HAL
 			- The HAL insolates the hardware from the software
 				- An example is if a driver needs to register for an interrupt service, it doesn't need to get into the actual hardware (Interrupt Controller)
-					- Instead the driver can go through the exposed functions provided by the HAL (but this isn't mandatory)
+				- Instead the driver can go through the exposed functions provided by the HAL (but this isn't mandatory)
 
 Below is another example for the ReadFile() function call.
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow2.png" alt="">
