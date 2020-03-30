@@ -242,7 +242,7 @@ The thread identifier for Notepad.exe (Using Process Explorer):
 Let's proceed by setting a breakpoint on CreateFileW() in WinDbg. We can set this breakpoint with `bp Kernel32!CreateFileW` (or `bp KernelBase!CreateFileW`)
 - KernelBase and Kernel32 go hand-in-hand
 	- KernelBase recently came about in newer versions of Windows to improve efficiency and reduce surface area (Disk and memory requirements, etc.)
-		- For more information on this, see [New Low-Level Binaries](https://docs.microsoft.com/en-us/windows/win32/win7appqual/new-low-level-binaries?redirectedfrom=MSDN)
+		- For more information on this, see ['New Low-Level Binaries'](https://docs.microsoft.com/en-us/windows/win32/win7appqual/new-low-level-binaries?redirectedfrom=MSDN) written by Microsoft.
 - We use CreateFileW() over CreateFileA() or CreateFile() here because:
 	- CreateFile() is not the actual function name (WinDbg will yell at you, if you try using it)
 	- CreateFileA() is not used by Notepad (Notepad uses unicode functions by default)
