@@ -446,7 +446,9 @@ If you're wanting to dive a little deeper into these topics that I've briefly co
 
 Wrapping Up
 ---
-In this post, we managed to cover quite a few topics regarding Windows architecture and how memory is managed, at a high-level.  
+In this post, we managed to cover quite a few topics regarding Windows architecture and how memory is managed, at a very high-level.  
+
+A lot more could definitely be explained on each of these topics, but again, this is meant to be an introduction.
 
 While I'm still trying to fully grasp these topics at a lower-level, I hope I managed to provide you all with a decent amount of knowledge.  
 
