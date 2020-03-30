@@ -229,7 +229,7 @@ In order to debug an application in WinDbg, we'll open up Notepad.exe under the 
 
 Once we attach WinDbg to Notepad, we'll see that we automatically get presented with a breakpoint.
 
-From here, to demonstrate some of the other topics we've covered up to this point, we can look at the current threads running and its associated process for Notepad.exe.
+From here, to demonstrate some of the other topics we've covered up to this point, we can look at the current threads running and its associated process for Notepad.exe, using the `~` command.
 
 The process identifier for Notepad.exe (Using Task Manager):  
 
