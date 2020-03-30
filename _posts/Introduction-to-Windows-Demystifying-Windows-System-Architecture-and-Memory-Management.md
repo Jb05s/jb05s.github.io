@@ -93,15 +93,15 @@ When you're presented with the "Status - Not Responding", this is saying that th
 Objects and Handles
 ---
 Objects are runtime instances of static structures
-	- i.e: Process, mutex, event, desktop, file
+- i.e: Process, mutex, event, desktop, file
 Reside in system memory space
 Kernel code can obtain direct pointer to an object.
 In order for user mode code to get access to an object is by using a handle.
 A handle is an index in a table that points to a specifc object in kernel space
-	- Shields user code from directly accessing an object
-	- Handle values are always in multiples of 4
+- Shields user code from directly accessing an object
+- Handle values are always in multiples of 4
 Objects are reference counted; so close the handle, after completing a task with the object
-	- The Object Manager is responsible for managing the reference counter
+- The Object Manager is responsible for managing the reference counter
 
 (Process Explorer Visuals - See Windows Internals 'Demo: Objects and Handles')
 
