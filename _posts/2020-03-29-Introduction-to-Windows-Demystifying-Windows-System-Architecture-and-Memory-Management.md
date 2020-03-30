@@ -132,16 +132,6 @@ When a process allocates memory, it is mapped to physcial memory (Blue blocks in
 	- For example; two processes resourcing for 'Notepad.exe'
 		- Windows will try and share resources as much as possible, if it makes sense to.
 
-Virtual Memory Layout
----
-
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-layout.png" alt="">
-
-4 GB - 32bit (2GB User Process Space (0x00000000 - 0x7FFFFFFF) / 2GB System Space (0x80000000 - 0xFFFFFFFF))  
-14 TB - 64bit (8 TB User Process Space (0x00000000'00000000 - 0x00007FFF'FFFFFFFF) / 6 TB System (Kernel) Space (0xFFFF0800'00000000 - 0xFFFFFFFF'FFFFFFFF))
-- The remainder of memory space for x64 is unmapped, due to Windows restrictions and/or due to limitations in CPUs
-
 In task manager or process explorer, under the 'Details' tab, you can see the 'Memory (Private Working Set)' column.
 - 'Private' meaning the memory is not shared
 	- Allocating memory via 'malloc' is considered private memory, this is what is shown
@@ -152,6 +142,33 @@ In task manager or process explorer, under the 'Details' tab, you can see the 'M
 - The values under this column are always divisible by 4 (The size of a memory page)
 
 (Windbg visuals / Process Explorer (or Task Manager) Visuals / VMMap visuals)
+
+Virtual Memory Layout
+---
+Now, let's talk a little bit about Virtual Memory, how it works, and the differences between 32-bit and 64-bit virtual memory space.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-layout.png" alt="">
+
+As seen the in 'Virtual Memory Layout' illustration, shown above, 32-bit and 64-bit architecture have quite a huge gap between one another.
+
+On a 32-bit architecture, we can see that it has a total of 4 GB of virtual memory.  
+The memory is split into User Process Space (Lower Addresses) and System Space (Higher Addresses).  
+- 2 GB for User Process Space
+- 2 GB for System (Kernel) Space
+
+On a 64-bit architecture, we can see that it utilizes a total of 14 TB of virtual memory (prior to Windows 8.1).  
+The memory is split into User Process Space (Lower Addresses) and System Space (Higher Addresses).  
+- 8 TB User Process Space
+- 8 TB System (Kernel) Space
+
+However, upon Windows 8.1 release, the virtual memory space expanded.
+- 128 TB User Process Space
+- 128 TB System (Kernel) Space
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-layout-81.png" alt="">
+
+If you noticed, the 64-bit architecture virtual memory layout has a section that's 'Unmapped'.  
+This space is unmapped because of windows resritctions and limitations in CPUs, at this time.
 
 General Architecture of Windows
 ---
@@ -174,7 +191,7 @@ Let's break these components down a little bit, just to get an idea of what each
 3. NTDLL.DLL - This is the lowest layer in User Mode and is responsible for the transition from User Mode to Kernel Mode.
 4. Executive - This is the upper layer in Kernel Mode, and is usually accessed by NTDLL.DLL upon transitioning from User Mode to Kernel Mode.
 5. Kernel - The lower layer in Kernel Mode that provides important OS facilities; like Thread Scheduling and Interrupt and Exeception Dispatching.
-6. Device Drivers - This a loadable kernel module that is responsible for carrying out operations for a specific device.
+6. Device Drivers - This a loadable kernel module that is responsible for carrying out operations for a specific device; such as file system and network drivers.
 7. Hardware Abstraction Layer (HAL) - This is a key component in Windows for insulating between the hardware and software.
 8. Graphics (Win32k) - This is used to handle all window related requests; such as resizing/minimzing a windows screen,etc. (UI related)
 - For this, instead of being directed to the 'Executive' component, your request will be sent here
