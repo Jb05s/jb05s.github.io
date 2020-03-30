@@ -201,7 +201,7 @@ Let's break these components down a little bit, just to get an idea of what each
 
 Now that I've given an extremely high-level overview on each of the components, let me try and present all this information in a more visual way.
 
-Function Call Flow
+Function Call Flow (Part 1)
 ---
 So how do we go from User Mode to Kernel Mode? What does it look like under the hood?
 
@@ -238,6 +238,45 @@ The process identifier for Notepad.exe (Using Task Manager):
 The thread identifier for Notepad.exe (Using Process Explorer):
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/windbg-tilde-notepad-thread.png" alt="">
+
+Let's proceed by setting a breakpoint on CreateFileW() in WinDbg. We can set this breakpoint with `bp Kernel32!CreateFileW` (or `bp KernelBase!CreateFileW`)
+- KernelBase and Kernel32 go hand-in-hand
+	- KernelBase recently came about in newer versions of Windows to improve efficiency and reduce surface area (Disk and memory requirements, etc.)
+		- For more information on this, see [New Low-Level Binaries](https://docs.microsoft.com/en-us/windows/win32/win7appqual/new-low-level-binaries?redirectedfrom=MSDN)
+- We use CreateFileW() over CreateFileA() or CreateFile() here because:
+	- CreateFile() is not the actual function name (WinDbg will yell at you, if you try using it)
+	- CreateFileA() is not used by Notepad (Notepad uses unicode functions by default)
+
+After setting a breakpoint, we need to invoke an action within Notepad.exe that'll call the CreateFileW() function (In this case, we'll try saving a new text document)
+
+Upon saving the new file, we hit our breakpoint and can dump the callstack to see what occured leading up to the CreateFileW() function.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-callstack-createfilew.png" alt="">
+
+From this point, we've seen what happens between the 'User Application - Notepad' and the 'Subsystem DLL - Kernel32.DLL'.  
+
+Now let's see what happens between 'Subsystem DLL - Kernel32.DLL' and 'NTDLL.DLL'.  
+
+Let's set a breakpoint on NtCreateFile with the `bp NTDLL!NtCreateFile`.
+
+After successfully setting the breakpoint, and allowing execution to continue, we'll hit the breakpoint on NtCreateFile().  
+
+If we dump the callstack with `k`, we can get a little more details on what happened leading up to NtCreateFile().
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-callstack-ntcreatefile.png" alt="">
+
+Let's see a little more detail on what's going on in the NtCreateFile() function by using the unassemble command `u` and see what instructions are going to be executed.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-ntcreatefile-unassembly.png" alt="">
+
+Notice in the screen capture above the `mov eax, 55h` instruction. This instruction discloses the System Service Number (SSN) for the NtCreateFile() function.
+
+A System Service Number (SSN) is a number in a array managed by the System Service Descriptor Table (SSDT).
+
+When a program in User Space calls a function, in our case `Kernel32!CreateFileW`, eventually the execution of code is transferred to `NTDLL!NtCreateFile` in NTDLL.DLL.  
+Then NTDLL.DLL will use syscall or sysenter to the kernel routine `Nt!NtCreateFile`.  
+
+We'll cover a little more on System Service Numbers (SSNs) and the System Service Descriptor Table (SSDT) in the next section when we can see it in action.
 
 - After NTDLL.DLL transitions the thread's service request from User Mode to Kernel Mode, we reach the upper layer of Kernel Mode, known as 'Executive'
 	- This layer is reached by calling a function within an NTDLL function
