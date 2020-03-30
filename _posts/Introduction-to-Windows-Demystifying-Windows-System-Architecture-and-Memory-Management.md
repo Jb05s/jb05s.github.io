@@ -83,8 +83,8 @@ A thread consists of the following:
 - A priority (0 (Lowest)-31 (Highest))
 - A state: Running, Ready, Waiting
 
-These are the owners of a window (i.e. Notepad) that receive user-input.
-So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.
+These are the owners of a window (i.e. Notepad) that receive user-input.  
+So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.  
 When you're presented with the "Status - Not Responding", this is saying that the thread has been held up for five or more seconds while trying to complete an operation.
 
 
