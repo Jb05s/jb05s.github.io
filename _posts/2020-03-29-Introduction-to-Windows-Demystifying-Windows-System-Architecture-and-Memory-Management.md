@@ -425,4 +425,4 @@ Please don't hesitate to reach out to me, if you have any questions, comments, a
 
 Thanks!!
 
-Until next time.. :)
+<img src="{{ site.url }}{{ site.baseurl }}/images/stay-classy.png" alt="">
