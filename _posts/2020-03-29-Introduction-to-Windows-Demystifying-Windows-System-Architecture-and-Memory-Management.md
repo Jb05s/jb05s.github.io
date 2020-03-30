@@ -62,6 +62,8 @@ In this mode, it has complete access to the kernel and device drivers.
 Additionally, this mode is allowed to access all system resources.  
 Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/bsod.png" alt="">
+
 Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL and of that of the lesser.
 
 In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called. I'll shine some more light on call gates later in the post, when I talk about the flow of a function call.
