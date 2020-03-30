@@ -347,7 +347,14 @@ For us to get the absolute address of a kernel routine on a 64-bit system, we'll
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/windbg-kiservicetable.png" alt="">
 
-As we can see, using the Nt!KiServiceTable and the SSN we identified earlier, in the formula _'KiServiceTableAddress + (routineOffset>>>4)'_, we can successfully identify that the SSN for `NTDLL!NtCreateFile` correctly points to `NT!NtCreateFile`!
+Using Nt!KiServiceTable and the SSN we identified earlier, we can calculate the relative offset to the kernel routine for `NT!NtCreateFile`.
+
+Now that we have the relative offset, we can use that in the follwoing formula to calculate the absolute address for `NT!NtCreateFile`:
+- _'KiServiceTableAddress + (routineOffset>>>4)'_  
+
+As we can see, we successfully identified that the SSN for `NTDLL!NtCreateFile` correctly points to `NT!NtCreateFile`!
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/say-whattt.png" alt="">
 
 Below is another example on the flow of a function call for the ReadFile() function (alternate graphic format).
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow2.png" alt="">
