@@ -99,6 +99,22 @@ We can view the list of current processes in _'Task Manager'_ or _'Process Explo
 
 Process Creation
 ---
+Now that we have the gist of what a process is, let's look at what happens during the creation of a process (i.e CreateProcess()).
+
+There are several things that need to take place prior to a process being capable of performing its operation. 
+
+There's a lot more going on behind the scenes than just opening the executable of the application. Let's take a closer look.
+
+As just mentioned, opening the executable is the initial phase in the process. 
+
+The executable is responsible for holding the main function of the application, amongst other things (like mapping and appropriate headers, etc).
+
+So what else is happening?
+
+In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through several data structures.
+
+
+
 
 (Walk through the data structure in WinDbg (ie. EPROCESS, KPROCESS, KTHREADS, PEB, etc.))
 
