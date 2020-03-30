@@ -126,7 +126,7 @@ When a process allocates memory, it is mapped to physcial memory (Blue blocks in
 
 Virtual Memory Layout
 ---
-4 GB - 32bit (2GB User Process Space (0x00000000 - 0x7FFFFFFF) / 2GB System Space (0x80000000 - 0xFFFFFFFF))
+4 GB - 32bit (2GB User Process Space (0x00000000 - 0x7FFFFFFF) / 2GB System Space (0x80000000 - 0xFFFFFFFF))  
 256 TB - 64bit (1288TB User Process Space (0x00000000'00000000 - 0x00007FFF'FFFFFFFF) / 128TB System (Kernel) Space (0xFFFF0800'00000000 - 0xFFFFFFFF'FFFFFFFF))
 - The remainder of memory space for x64 is unmapped, due to Windows restrictions and/or due to limitations in CPUs
 
