@@ -84,7 +84,7 @@ Processes
 <img src="{{ site.url }}{{ site.baseurl }}/images/process-overview.png" alt="">
 
 Processes are management containers for threads to execute code.  
-There's multiple occasions where I've heard "There's a process running..". This is an inaccurate statement. A process is never "running".  
+To start, there's a misconception that a "process is running". This is an inaccurate statement. A process is never "running".  
 A process is simply a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
 A process consists of the following:
 - A private virtual address space
