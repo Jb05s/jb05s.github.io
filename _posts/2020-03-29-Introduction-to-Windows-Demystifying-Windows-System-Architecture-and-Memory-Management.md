@@ -105,23 +105,17 @@ There are several things that need to take place prior to a process being capabl
 
 There's a lot more going on behind the scenes than just opening the executable of the application. Let's take a closer look.
 
-As just mentioned, opening the executable is the initial phase in the process. 
-
-The executable is responsible for holding the main function of the application, amongst other things (like mapping and appropriate headers, etc).
+As just mentioned, opening the executable is the initial phase in the process. The executable is responsible for holding the main function of the application, amongst other things (like mapping and appropriate headers, etc).
 
 So what else is happening?
 
-In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through a couple data structures.
-
-We'll take a look at these data structures in a moment.
+In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through a couple data structures. We'll take a look at these data structures in a moment.
 
 Proceeding, the initial thread is created. A process will always need a thread associated to it.. or the process is essentially meaningless.
 
 Following the creation of the initial thread, the kernel needs to manage the threads contained in the process. This is also done through a couple data structures that we'll review later.
 
-Next, now that the process and initial thread has been created and are now being managed, the Client Server Runtime SubSystem (CSRSS.exe) has notified.  
-
-The Client Server Runtime SubSystem (CSRSS.exe) is the Win32 subsystem process that manages user mode processes.
+Next, now that the process and initial thread has been created and are now being managed, the Client Server Runtime SubSystem (CSRSS.exe) has notified. The Client Server Runtime SubSystem (CSRSS.exe) is the Win32 subsystem process that manages user mode processes.
 
 The last part of process creation is the loading and initialization of the required DLLs (i.e. Header files specified within a Visual Studio application), and for the main functions within each DLL to be loaded.  
 
