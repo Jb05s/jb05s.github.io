@@ -111,18 +111,29 @@ The executable is responsible for holding the main function of the application, 
 
 So what else is happening?
 
-In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through several data structures.
+In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through a couple data structures.
 
 We'll take a look at these data structures in a moment.
 
-Proceeding, the initial thread is created. As mention previously, a process will always need a thread associated to it.. or the process is essentially meaningless.
+Proceeding, the initial thread is created. A process will always need a thread associated to it.. or the process is essentially meaningless.
 
+Following the creation of the initial thread, the kernel needs to manage the threads contained in the process. This is also done through a couple data structures that we'll review later.
+
+Next, now that the process and initial thread has been created and are now being managed, the Client Server Runtime SubSystem (CSRSS.exe) has notified.  
+
+The Client Server Runtime SubSystem (CSRSS.exe) is the Win32 subsystem process that manages user mode processes.
+
+The last part of process creation is the loading and initialization of the required DLLs (i.e. Header files specified within a Visual Studio application), and for the main functions within each DLL to be loaded.  
 
 So here's a recap on process creation:
-1. Opening an executable file
-2. The creation of the Executive Process (EPROCESS) object in kernel
-3. The creation of the initial thread for the process
-4.
+1. Opening of the executable file
+2. The creation of the Executive Process (EPROCESS/KPROCESS) object in kernel
+3. The creation of the initial thread for the new process
+4. The creation of the Executive Thread (ETHREAD/KTHREAD) object in kernel
+5. CSRSS.exe is notified of the new process and thread
+6. Completing the initiation of the new process and thread
+- Loading the required DLLs
+- Calling the main functions
 
 (Walk through the data structure in WinDbg (ie. EPROCESS, KPROCESS, KTHREADS, PEB, etc.))
 
@@ -140,7 +151,9 @@ A thread consists of the following:
 - A state: Running, Ready, Waiting
 
 These are the owners of a window (i.e. Notepad) that receive user-input.  
+
 So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.  
+
 When you're presented with the "Status - Not Responding", this is saying that the thread has been held up for five or more seconds while trying to complete an operation.
 
 To present a visual on threads, let's take a look at two instances of Notepad.exe.  
@@ -151,7 +164,7 @@ When a user runs an application; such as Notepad.exe, an initial thread is creat
 
 In the first instance of Notepad, it will be waiting for the user to request some kind of operation to be performed. Since it's not performing any kind of operation, there should only be one thread assoicated to this process.
 
-Alternatively, in the second instance of Notepad, we're going to perform an operation. For this example, let's try and open a file in Notepad. Upon clicking into the `File` tab in Notepad, and clicking the `Open File` option, we'll be able to see that additional threads are being created to carry out the request. See the visual below for details.
+Alternatively, in the second instance of Notepad, we're going to perform an operation. For this example, let's try and open a file in Notepad. Upon clicking into the `File` tab in Notepad, and clicking the `Open File` option, we'll be able to see that additional threads are being created by the initial thread to carry out the request. See the visual below for details. 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-compare.png" alt="">
 
