@@ -113,6 +113,10 @@ So what else is happening?
 
 In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through several data structures.
 
+We'll take a look at these data structures in a moment.
+
+Proceeding, the initial thread is created. As mention previously, a process will always need a thread associated to it.. or the process is essentially meaningless.
+
 
 
 
