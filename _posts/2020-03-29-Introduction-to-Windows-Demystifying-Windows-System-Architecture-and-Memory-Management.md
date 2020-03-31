@@ -131,7 +131,9 @@ So here's a recap on process creation:
 - Loading the required DLLs
 - Calling the main functions
 
-(Walk through the data structure in WinDbg (ie. EPROCESS, KPROCESS, KTHREADS, PEB, etc.))
+Now, let's take a look at the data structures that were mentioned above, and provide some visual context.  
+
+
 
 Threads
 ---
@@ -457,9 +459,11 @@ Below is another example on the flow of a function call for the ReadFile() funct
 
 References
 ---
-If you're wanting to dive a little deeper into these topics that I've briefly covered in this post, I highly recommend checking out the following books:  
+If you're wanting to dive a little deeper into these topics that I've briefly covered in this post, I highly recommend checking out the following:  
 - [Windows Internals](https://www.amazon.com/Windows-Internals-Part-architecture-management-ebook/dp/B0711FDMRR/ref=sr_1_1?crid=2NO7YE7IA9N5H&keywords=windows+internals&qid=1585543596&sprefix=windows+intern%2Caps%2C151&sr=8-1) by Pavel Yosifovich, Alex Ionescu, Mark E. Russinovich, and David A. Solomon  
 - [What Makes It Page?: The Windows 7 (x64) Virtual Memory Manager](https://www.amazon.com/What-Makes-Page-Windows-Virtual/dp/1479114294/ref=sr_1_1?keywords=what+makes+it+page&qid=1585543658&sr=8-1) by Enrico Martignetti
+
+- [Data Structures](https://www.geoffchappell.com/studies/windows/km/ntoskrnl/structs/eprocess/index.htm)
 
 Wrapping Up
 ---
