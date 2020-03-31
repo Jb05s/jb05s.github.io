@@ -25,7 +25,7 @@ Kernel Mode vs User Mode
 ---
 To begin, in Windows, to protect user applications from accessing critical operating system data, Windows splits the processor up into two access modes. These two modes are User mode and Kernel Mode.  
 
-This schema ensures that any user application that's performing unintended actions won't disrupt the stability/avilability of the overall system.  
+This schema ensures that any user application that's performing unintended actions won't disrupt the stability/availability of the overall system.  
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/privilege-rings.png" alt="">
 
@@ -41,7 +41,7 @@ Here's some key differences between User Mode and Kernel Mode:
 1. User Mode (CPL 3)
 	- Cannot directly access hardware
 	- Cannot access some parts of Virtual Memory
-	- Need to call System Calls to perform some operations
+	- Needs to call System Calls to perform some operations
 	- Has restricted access
 2. Kernel Mode (CPL 0)
 	- Can directly access hardware
@@ -69,24 +69,24 @@ Any unhandled exception in kernel mode can result in a system crash, infamously 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/bsod.png" alt="">
 
-Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL and of that of the lesser.
+Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL (and of that of the lesser).
 
-In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called. I'll shine some more light on call gates later in the post, when I talk about the flow of a function call.
+In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called. I'll shine some more light on what call gates are later in the post.
 
-We can get a bit of a visual by viewing the 'Performance' tab within Task Manager. See the figure below for detail.
+We can get a bit of a visual of by viewing the 'Performance' tab within Task Manager. See the figure below for detail.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/task-manager-performance.png" alt="">
 
-As seen in the visual, we can see when the CPU is performing operations in User Mode vs Kernel Mode. You're able to see this graph layout by right-clicking in the graph and selecting `'Show kernel times'`.
+As seen in the visual, we can see when the CPU is performing operations in User Mode vs Kernel Mode. You're able to see this graph layout, by right-clicking in the graph and selecting `'Show kernel times'`.
 
 Processes
 ---
 <img src="{{ site.url }}{{ site.baseurl }}/images/process-overview.png" alt="">
 
 Processes are management containers for threads to execute code.  
-To start, there's a misconception that a "process is running". This is an inaccurate statement. A process is never "running".  
+To start, there's a misconception that a "process is running". This is an inaccurate statement as process is never "running".  
 A process is simply a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
-A process consists of the following:
+Referring to the image above, a process consists of the following:
 - A private virtual address space
 - An executable program containing data that can be executed
 - A table of handles referencing kernel objects
