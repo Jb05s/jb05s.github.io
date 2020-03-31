@@ -81,6 +81,8 @@ As seen in the visual, we can see when the CPU is performing operations in User 
 
 Processes
 ---
+<img src="{{ site.url }}{{ site.baseurl }}/images/threads-init-notepad.png" alt="">
+
 Processes are management containers for threads to execute code.  
 There's multiple occasions where I've heard "There's a process running..". This is an inaccurate statement. A process is never "running".  
 A process is simply a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
