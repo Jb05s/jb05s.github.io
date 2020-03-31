@@ -118,7 +118,11 @@ We'll take a look at these data structures in a moment.
 Proceeding, the initial thread is created. As mention previously, a process will always need a thread associated to it.. or the process is essentially meaningless.
 
 
-
+So here's a recap on process creation:
+1. Opening an executable file
+2. The creation of the Executive Process (EPROCESS) object in kernel
+3. The creation of the initial thread for the process
+4.
 
 (Walk through the data structure in WinDbg (ie. EPROCESS, KPROCESS, KTHREADS, PEB, etc.))
 
