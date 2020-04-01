@@ -163,7 +163,7 @@ Due to there being so much presented in the output, I won't be going into much f
 
 To make sure we're working under the context of _'Notepad.exe'_ in the debugger, we're going to issue `'.process <Notepad_EPROCESS_Addr>'`. This will switch the active process that WinDbg is working under to the specified process.
 
-We'll know if we've successfully transitioned, if we receive a message in WinDbg stating, _"Implicit process is now <EPROCESS_Addr>"_.
+We'll know if we've successfully transitioned, if we receive a message in WinDbg stating, "_Implicit process is now <EPROCESS_Addr>_".
 
 Threads
 ---
