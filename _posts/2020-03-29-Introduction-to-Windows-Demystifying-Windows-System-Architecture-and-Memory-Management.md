@@ -173,7 +173,7 @@ As we can see here, we've dumped the table of the `EPROCESS` structure, and can 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/eprocess-pid-offset.png" alt="">
 
-Now would you look at that! By taking the sum of the base address of EPROCESS and the offset to reach UniqueProcessId, we successfully verified that it's a match!
+Now would you look at that! By taking the sum of the base address of EPROCESS and the offset to reach UniqueProcessId, we successfully verified that it's a match! (Remember your hexidecimal to decimal conversions!)
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/oh-snap.gif" alt="">
 
