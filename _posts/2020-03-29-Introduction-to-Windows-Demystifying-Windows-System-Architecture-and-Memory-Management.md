@@ -495,7 +495,7 @@ Now that we have the relative offset, we can use that in the following formula t
 
 As we can see, we successfully identified that the SSN for `NTDLL!NtCreateFile` correctly points to `NT!NtCreateFile`!
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/say-whattt.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/what-the" alt="">
 
 We could use this same formula to calculate all the SSDT routines, if we wanted to. We can see this in action in the screenshot shown below.
 
