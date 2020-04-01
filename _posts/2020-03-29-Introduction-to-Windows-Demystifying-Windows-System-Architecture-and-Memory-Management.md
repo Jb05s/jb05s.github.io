@@ -143,27 +143,31 @@ Upon placing LiveKD in the appropriate directory also containing WinDbg, we can 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/livekd-w.png" alt="">
 
-Once the debugger is up and running, let's execute the `'!process 0 0'` command. This command will print out some information on all the currently running processes on the system.
+Once the debugger is up and running, let's execute the `!process 0 0` command. This command will print out some information on all the currently running processes on the system.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/current-running-processes-windbg.png" alt="">
 
 Hightlighted in the above image, these are addresses to each of the process' EPROCESS structure that is managed by the 'Executive' component in the Windows architecture. We'll be covering the general architecture of Windows shortly, so hang tight.
 
-If we'd like to gather more detail on a specific process that's currently running, we can issue `'!process <EPROCESS_Addr>'`. (See the image below for an example)
+If we'd like to gather more detail on a specific process that's currently running, we can issue `!process <EPROCESS_Addr>`. (See the image below for an example)
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/current-running-processes-windbg.png" alt="">
 
 Keeping with the theme, I've requested further details on the _'Notepad.exe'_ process.
 
-<img src="{{ site.url }}{{ site.baseurl }}/imagesnotepad-process-windbg.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-process-windbg.png" alt="">
 
 From the output, we can see quite a lot of information about the _'Notepad.exe'_ process. We can see the process identifier (the `'CID'` parameter in the output), the `'Token'` address (which discloses the security context of the process), etc.
 
 Due to there being so much presented in the output, I won't be going into much further details here. However, I do want to show how you can enumerate all this information by crawling the EPROCESS structure through offsets.
 
-To make sure we're working under the context of _'Notepad.exe'_ in the debugger, we're going to issue `'.process <Notepad_EPROCESS_Addr>'`. This will switch the active process that WinDbg is working under to the specified process.
+To make sure we're working under the context of _'Notepad.exe'_ in the debugger, we're going to issue `.process <Notepad_EPROCESS_Addr>`. This will switch the active process that WinDbg is working under to the specified process.
 
 We'll know if we've successfully transitioned, if we receive a message in WinDbg stating: `Implicit process is now <EPROCESS_Addr>`.
+
+Now that WinDbg is working under the _'Notepad.exe'_ process, let's dump the `'EPROCESS'` table with the `dt NT!_EPROCESS`.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-eprocess.png" alt="">
 
 Threads
 ---
