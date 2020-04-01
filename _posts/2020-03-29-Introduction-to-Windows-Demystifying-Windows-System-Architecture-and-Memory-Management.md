@@ -143,7 +143,7 @@ Upon placing LiveKD in the appropriate directory also containing WinDbg, we can 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/livekd-w.png" alt="">
 
-Once the debugger is up and running, let's execute the `!process 0 0` command. This command will print out all the currently running processes on the system.
+Once the debugger is up and running, let's execute the `'!process 0 0'` command. This command will print out all the currently running processes on the system.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/current-running-processes-windbg.png" alt="">
 
