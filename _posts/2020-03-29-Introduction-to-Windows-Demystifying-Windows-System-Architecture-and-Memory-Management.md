@@ -133,7 +133,19 @@ So here's a recap on process creation:
 
 Now, let's take a look at the data structures that were mentioned above, and provide some visual context.  
 
+To get started, we'll need to fire up LiveKD from the [Windows SysInternals Suite](https://live.sysinternals.com/).
 
+If you're following along, let's make sure your environment is setup correctly.
+
+After downloading LiveKD, we need to place the module in the same directory WinDbg is kept.  
+
+Upon placing LiveKD in the appropriate directory also containing WinDbg, we can proceed by opening an Administative Command Prompt in the directory containing both modules.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/livekd-w.png" alt="">
+
+Once the debugger is up and running, let's execute the `!process 0 0` command. This command will print out all the currently running processes on the system.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/current-running-processes-windbg.png" alt="">
 
 Threads
 ---
@@ -409,15 +421,7 @@ As we did in the previous section, let's try to make a little more sense of this
 
 In this situation, we won't simply be attaching to the Notepad.exe via the 'Open Executable' option in WinDbg.
 
-For this, we'll be using LiveKD from the [Windows SysInternals Suite](https://live.sysinternals.com/).
-
-If you're following along, let's amke sure your environment is setup correctly.
-
-After downloading LiveKD, we need to place the module in the same directory WinDbg is kept.  
-
-Upon placing LiveKD in the appropriate directory also containing WinDbg, we can proceed by opening an Administative Command Prompt in the directory containing both modules.
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/livekd-w.png" alt="">
+For this, we'll once again be using _'LiveKD'_. Again, the command for this is `LiveKD.exe -w`.
 
 Now that we're successfully debugging the live system, let's pick-up where we left off in the previous section.  
 
