@@ -177,17 +177,16 @@ Now would you look at that! By taking the sum of the base address of EPROCESS an
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/oh-snap.gif" alt="">
 
-The same steps can be taken to gain some insight on other important data structures; such as `KPROCESS`, `ETHREAD`, `KTHREAD`, and the `PEB`.
+The same steps can be taken to gain some insight on other important data structures; such as `KPROCESS`, `ETHREAD`, `KTHREAD`, etc.
 
 To encapsulate each of these data structures, refer to the information below.
 
-1. `EPROCESS` (fill-out)
-2. `KPROCESS` (fill-out)
-3. `ETHREAD` (fill-out)
-4. `KTHREAD` (fill-out)
-5. `PEB` (fill-out)
+1. `EPROCESS` structure is the kernel’s representation of a process object.
+2. `KPROCESS` structure is the Kernel’s portion of the EPROCESS structure.
+3. `ETHREAD` structure is the kernel’s representation of a thread object.
+4. `KTHREAD` structure is the Kernel’s portion of the ETHREAD structure.
 
-Here's a high-level graph overviewing these structures.
+Here's a high-level graph overviewing these structures and how they all mesh together.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/data-struct-overview.png" alt="">
 
