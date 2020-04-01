@@ -169,6 +169,14 @@ Now that WinDbg is working under the _'Notepad.exe'_ process, let's dump the `'E
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-eprocess.png" alt="">
 
+As we can see here, we've dumped the table of the `EPROCESS` structure, and can now identify the offsets of where specific data is placed. Let's take the `UniqueProcessId` offset at `+0x2e0` and see if it matches up with the process identifier for _'Notepad.exe'_ in _'Task Manager'_ (or _'Process Explorer'_).
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/eprocess-pid-offset.png" alt="">
+
+Now would you look at that! By taking the sum of the base address of EPROCESS and the offset to reach UniqueProcessId, we successfully verified that it's a match!
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/oh-snap.gif" alt="">
+
 Threads
 ---
 Threads, as mentioned earlier, are entities scheduled by the kernel to execute code.  
