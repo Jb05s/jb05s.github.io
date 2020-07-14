@@ -174,15 +174,11 @@ A thread consists of the following:
 - A priority (0 (Lowest)-31 (Highest))
 - A state: Running, Ready, Waiting
 
-These are the owners of a window (i.e. Notepad) that receive user-input.  
-
-So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.  
+These are the owners of a window (i.e. Notepad) that receive user-input. So, when you open Task Manager and see "Status - Running" or "Status - Not Responding", this is simply stating if a thread is ready to receive input, or that a thread is working on an operation.  
 
 When you're presented with the "Status - Not Responding", this is saying that the thread has been held up for five or more seconds while trying to complete an operation.
 
-To present a visual on threads, let's take a look at two instances of Notepad.exe.  
-
-When a user runs an application; such as Notepad.exe, an initial thread is created.
+To present a visual on threads, let's take a look at two instances of Notepad.exe. When a user runs an application; such as Notepad.exe, an initial thread is created.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/threads-init-notepad.png" alt="">
 
@@ -200,19 +196,15 @@ Now that we've got some insight on processes and threads, let's proceed by discu
 
 Objects and Handles
 ---
-An object is a static data structure that reside in system memory space and represent runtime resources like processes, threads, etc., and provides information on various attributes (i.e. object type).  
-
-All objects are managed by the Object Manager. The Object Manager is responsible for creating, managing, and terminating objects.  
+An object is a static data structure that reside in system memory space and represent runtime resources like processes, threads, etc., and provides information on various attributes (i.e. object type). All objects are managed by the Object Manager. The Object Manager is responsible for creating, managing, and terminating objects.  
 
 Let's use _'Process Explorer'_ for further understanding.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/object-procexplorer.png" alt="">
 
-Kernel code can obtain a direct pointer to an object. In order for user mode code to get access to an object is by using a handle.  
+Kernel code can obtain a direct pointer to an object. In order for user mode code to get access to an object is by using a handle. A handle is an index in a table that points to a specifc object in kernel space. They're used as shields against user code from directly accessing an object in the kernel.
 
-A handle is an index in a table that points to a specifc object in kernel space.  
-
-They're used as shields against user code from directly accessing an object in the kernel.
+Some important information to understand:
 - Handle values are always in multiples of 4  
 - Objects are reference counted
 - The Object Manager is responsible for managing the reference counter
@@ -226,8 +218,7 @@ As we can see, we're able to view the Handle Table for each process to see the h
 
 Virtual Memory
 ---
-Windows implements virtual memory based on a linear memory model. Every process has it's own private virtual address space.  
-The virtual address space for a process is divided into two parts; a User Space and a Kernel Space.
+Windows implements virtual memory based on a linear memory model. Every process has it's own private virtual address space. The virtual address space for a process is divided into two parts; a User Space and a Kernel Space.
 
 Let's use the following diagram to go into more detail.
 
@@ -302,9 +293,7 @@ As you can see, based on the line separator, Windows is divided into two parts:
 1. User Mode
 2. Protected Mode
 
-These two parts have several components associated to them.
-
-Let's break these components down a little bit, just to get an idea of what each component is.
+These two parts have several components associated to them. Let's break these components down a little bit, just to get an idea of what each component is.
 
 1. User Applications - These are processes that want to perform some kind of task on the operating system; such as CreateFile() via Notepad.exe.
 2. Subsystem DLLs - In order to use the CreateFile() function described in the 'User Application' component, you need to use it's respected subsystem DLL that CreateFile() is implemented (in this case it'd be Kernel32.DLL).
@@ -323,13 +312,9 @@ Now that I've given an extremely high-level overview on each of the components, 
 
 Function Call Flow (Part 1)
 ---
-So how do we go from User Mode to Kernel Mode? What does it look like under the hood?
+So how do we go from User Mode to Kernel Mode? What does it look like under the hood? User mode can transition to Kernel mode when threads in user mode are performing operations (i.e. CreateFile()).
 
-User mode can transition to Kernel mode when threads in user mode are performing operations (i.e. CreateFile()).
-
-Let's dive a little deeeper into this process by following going through the components described in the previous section. Let's make use the following graphic to provide some visualization.
-
-_Note: I will be demonstrating the flow of a function call on Windows 10 (x64) RedStone 2._
+Let's dive a little deeeper into this process by following going through the components described in the previous section. We'll make use the following graphic to provide some visualization. _Note: I will be demonstrating the flow of a function call on Windows 10 (x64) RedStone 2._
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/call-flow1.png" alt="">
 
@@ -343,15 +328,11 @@ Let's take a user application; such as Notepad.exe, and let's say it wants to cr
 	- NTDLL.DLL has its own native api call for CreateFile() called 'NtCreateFile()'
 	- This step is where we see the sysenter/syscall (x86/x64) call to jump from User Mode to Kernel Mode
 
-To make a little more sense of this, let's take a look at these first few steps in WinDbg.
-
-In order to debug an application in WinDbg, we'll open up Notepad.exe under the 'Open an Executable' option under the 'File' tab.
+To make a little more sense of this, let's take a look at these first few steps in WinDbg. In order to debug an application in WinDbg, we'll open up Notepad.exe under the 'Open an Executable' option under the 'File' tab.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/open-executable.png" alt="">
 
-Once we attach WinDbg to Notepad, we'll see that we automatically get presented with a breakpoint.
-
-From here, to demonstrate some of the other topics we've covered up to this point, we can look at the current threads running and its associated process for Notepad.exe, using the `~` command.
+Once we attach WinDbg to Notepad, we'll see that we automatically get presented with a breakpoint. From here, to demonstrate some of the other topics we've covered up to this point, we can look at the current threads running and its associated process for Notepad.exe, using the `~` command.
 
 The process identifier for Notepad.exe (Using Task Manager):  
 
@@ -369,21 +350,15 @@ Let's proceed by setting a breakpoint on CreateFileW() in WinDbg. We can set thi
 	- CreateFile() is not the actual function name (WinDbg will yell at you, if you try using it)
 	- CreateFileA() is not used by Notepad (Notepad uses unicode functions by default)
 
-After setting a breakpoint, we need to invoke an action within Notepad.exe that'll call the CreateFileW() function (In this case, we'll try saving a new text document)
-
-Upon saving the new file, we hit our breakpoint and can dump the callstack to see what occured leading up to the CreateFileW() function.
+After setting a breakpoint, we need to invoke an action within Notepad.exe that'll call the CreateFileW() function (In this case, we'll try saving a new text document) Upon saving the new file, we hit our breakpoint and can dump the callstack to see what occured leading up to the CreateFileW() function.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-callstack-createfilew.png" alt="">
 
-From this point, we've seen what happens between the 'User Application - Notepad' and the 'Subsystem DLL - Kernel32.DLL'.  
-
-Now let's see what happens between 'Subsystem DLL - Kernel32.DLL' and 'NTDLL.DLL'.  
+From this point, we've seen what happens between the 'User Application - Notepad' and the 'Subsystem DLL - Kernel32.DLL'. Now let's see what happens between 'Subsystem DLL - Kernel32.DLL' and 'NTDLL.DLL'.  
 
 Let's set a breakpoint on NtCreateFile with the `bp NTDLL!NtCreateFile`.
 
-After successfully setting the breakpoint, and allowing execution to continue, we'll hit the breakpoint on NtCreateFile().  
-
-If we dump the callstack with `k`, we can get a little more details on what happened leading up to NtCreateFile().
+After successfully setting the breakpoint, and allowing execution to continue, we'll hit the breakpoint on NtCreateFile(). If we dump the callstack with `k`, we can get a little more details on what happened leading up to NtCreateFile().
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-callstack-ntcreatefile.png" alt="">
 
