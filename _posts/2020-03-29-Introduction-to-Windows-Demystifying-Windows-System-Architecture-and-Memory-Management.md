@@ -439,6 +439,8 @@ Wrapping Up
 ---
 In this post, we managed to cover quite a few topics regarding Windows architecture and how memory is managed, at a very high-level. A lot more could definitely be explained on each of these topics, but again, this is meant to be an introduction. While I'm still trying to fully grasp these topics at a lower-level, I hope I managed to provide you all with a decent amount of knowledge. I plan to keep building off this and provide you all with more content, in the near future.  
 
-Please don't hesitate to reach out to me, if you have any questions, comments, and/or concerns about the topics I've covered here. Thanks!!
+Please don't hesitate to reach out to me, if you have any questions, comments, and/or concerns about the topics I've covered here. 
+
+Thanks!!
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/stay-classy.png" alt="">
