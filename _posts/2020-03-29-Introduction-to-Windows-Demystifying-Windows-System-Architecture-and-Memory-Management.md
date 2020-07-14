@@ -24,14 +24,12 @@ Let's jump right into it!
 Kernel Mode vs User Mode
 ---
 To begin, in Windows, to protect user applications from accessing critical operating system data, Windows splits the processor up into two access modes. These two modes are User mode and Kernel Mode.  
-
 This schema ensures that any user application that's performing unintended actions won't disrupt the stability/availability of the overall system.  
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/privilege-rings.png" alt="">
 
-In the illustration shown above, there's a total of seven layers (or rings) of protection.
-
-Whenever code executes, it always will have a mode associated with it. This is called the "Thread Access Mode" or better known as the "Current Privilege Level (CPL)"
+In the illustration shown above, there's a total of seven layers (or rings) of protection. Whenever code executes, it always will have a mode associated with it. This is called the "Thread Access Mode" 
+or better known as the "Current Privilege Level (CPL)"
 
 While there may be several rings, Windows only uses two of these rings:
 1. Ring 0 (Kernel Mode); which is the most privileged
@@ -51,29 +49,21 @@ Here's some key differences between User Mode and Kernel Mode:
 
 User Mode (CPL 3)
 ---
-User Mode is responsible for running code within user applications.
-
-This mode doesn't allow access to operating system code or data, and is denied access to system hardware.  
-
-If a crash occurs in this mode, the system is not effected, only in the application where the error occurred.
+User Mode is responsible for running code within user applications. This mode doesn't allow access to operating system code or data, and is denied access to system hardware. If a crash occurs in this mode, 
+the system is not effected, only in the application where the error occurred.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/app-crash.png" alt="">
 
 Kernel Mode (Privileged) (CPL 0)
 ---
-In this mode, it has complete access to the kernel and device drivers.  
-
-Additionally, this mode is allowed to access all system resources.  
-
-Any unhandled exception in kernel mode can result in a system crash, infamously known as the Blue Screen of Death (BSoD).
+In this mode, it has complete access to the kernel and device drivers. Additionally, this mode is allowed to access all system resources. Any unhandled exception in kernel mode can result in a system crash, 
+infamously known as the Blue Screen of Death (BSoD).
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/bsod.png" alt="">
 
-Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL (and of that of the lesser).
-
-In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a "Call Gate" needs to be called. I'll shine some more light on what call gates are later in the post.
-
-We can get a bit of a visual of by viewing the 'Performance' tab within Task Manager. See the figure below for detail.
+Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL (and of that of the lesser). In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a 
+"Call Gate" needs to be called. I'll shine some more light on what call gates are later in the post. We can get a bit of a visual of by viewing the 'Performance' tab within Task Manager. 
+See the figure below for detail.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/task-manager-performance.png" alt="">
 
