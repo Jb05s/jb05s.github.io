@@ -366,22 +366,16 @@ Let's see a little more detail on what's going on in the NtCreateFile() function
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-ntcreatefile-unassembly.png" alt="">
 
-Notice in the screen capture above the `mov eax, 55h` instruction. This instruction discloses the System Service Number (SSN) for the NtCreateFile() function.
-
-A System Service Number (SSN) is a number in an array managed by the System Service Descriptor Table (SSDT).
+Notice in the screen capture above the `mov eax, 55h` instruction. This instruction discloses the System Service Number (SSN) for the NtCreateFile() function. A System Service Number (SSN) is a number in an array managed by the System Service Descriptor Table (SSDT).
 
 When a program in User Space calls a function, in our case `Kernel32!CreateFileW`, eventually the execution of code is transferred to `NTDLL!NtCreateFile` in NTDLL.DLL.  
-Then NTDLL.DLL will use `syscall` or `sysenter` to the kernel routine `Nt!NtCreateFile`.  
-
-We'll cover a little more on System Service Numbers (SSNs) and the System Service Descriptor Table (SSDT) in the next section when we can see it in action.
+Then NTDLL.DLL will use `syscall` or `sysenter` to the kernel routine `Nt!NtCreateFile`. We'll cover a little more on System Service Numbers (SSNs) and the System Service Descriptor Table (SSDT) in the next section when we can see it in action.
 
 If we keep tracing through the instructions, we'll see that we eventually hit the `syscall` instruction.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-ntcreatefile-syscall.png" alt="">
 
-Now, if we were to proceed with the execution of this function, we'll see that we don't see anything happening in Kernel Mode.  
-
-Since we're debugging the application itself, we won't be able to analyze anything happening in Kernel Mode.
+Now, if we were to proceed with the execution of this function, we'll see that we don't see anything happening in Kernel Mode. Since we're debugging the application itself, we won't be able to analyze anything happening in Kernel Mode.
 
 We'll analyze what's happening in Kernel Mode, coming up in the next section.
 
@@ -406,27 +400,11 @@ Now that we've seen what goes on in User Mode leading up to the transition from 
 			- An example is if a driver needs to register for an interrupt service, it doesn't need to get into the actual hardware (Interrupt Controller)
 			- Instead the driver can go through the exposed functions provided by the HAL (but this isn't mandatory)
 
-As we did in the previous section, let's try to make a little more sense of this flow using WinDbg.
+As we did in the previous section, let's try to make a little more sense of this flow using WinDbg. In this situation, we won't simply be attaching to the Notepad.exe via the 'Open Executable' option in WinDbg. For this, we'll once again be using _'LiveKD'_. Again, the command for this is `LiveKD.exe -w`.
 
-In this situation, we won't simply be attaching to the Notepad.exe via the 'Open Executable' option in WinDbg.
+Now that we're successfully debugging the live system, let's pick-up where we left off in the previous section. We've just identified the System Service Number (SSN) for NTDLL!NtCreateFile, and made it up to the `syscall` instruction. Let's look a little deeper into that System Service Number (SSN); which was fingerprinted as 55h in the `mov eax, 55h` instruction. As mentioned before, the System Service Descriptor Table (SSDT) manages an array of addresses to kernel routines. These routines are index pointers to the NT system API calls; such as NT!NtCreateFile. Let's see if we can verify that the NTDLL!CreateFile System Service Number (SSN) is actually correct!
 
-For this, we'll once again be using _'LiveKD'_. Again, the command for this is `LiveKD.exe -w`.
-
-Now that we're successfully debugging the live system, let's pick-up where we left off in the previous section.  
-
-We've just identified the System Service Number (SSN) for NTDLL!NtCreateFile, and made it up to the `syscall` instruction.  
-
-Let's look a little deeper into that System Service Number (SSN); which was fingerprinted as 55h in the `mov eax, 55h` instruction.
-
-As mentioned before, the System Service Descriptor Table (SSDT) manages an array of addresses to kernel routines. These routines are index pointers to the NT system API calls; such as NT!NtCreateFile.  
-
-Let's see if we can verify that the NTDLL!CreateFile System Service Number (SSN) is actually correct!
-
-We can validate this by using WinDbg to analyze the System Service Descriptor Table (SSDT).
-
-In WinDbg, we can see the Service Descriptor Table structure by using the `x nt!KiService*` command. This will provide us the information to the pointer of the SSDT itself - `NT!KiServiceTable`.
-
-From here, we can dump the SSDT with the `dq NT!KiServiceTable` command. This command output will provide us with the relative offset to the kernel routines, at least on 64-bit architecture.
+We can validate this by using WinDbg to analyze the System Service Descriptor Table (SSDT). In WinDbg, we can see the Service Descriptor Table structure by using the `x nt!KiService*` command. This will provide us the information to the pointer of the SSDT itself - `NT!KiServiceTable`. From here, we can dump the SSDT with the `dq NT!KiServiceTable` command. This command output will provide us with the relative offset to the kernel routines, at least on 64-bit architecture.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/windbg-kiservice.png" alt="">
 
@@ -459,16 +437,8 @@ If you're wanting to dive a little deeper into these topics that I've briefly co
 
 Wrapping Up
 ---
-In this post, we managed to cover quite a few topics regarding Windows architecture and how memory is managed, at a very high-level.  
+In this post, we managed to cover quite a few topics regarding Windows architecture and how memory is managed, at a very high-level. A lot more could definitely be explained on each of these topics, but again, this is meant to be an introduction. While I'm still trying to fully grasp these topics at a lower-level, I hope I managed to provide you all with a decent amount of knowledge. I plan to keep building off this and provide you all with more content, in the near future.  
 
-A lot more could definitely be explained on each of these topics, but again, this is meant to be an introduction.
-
-While I'm still trying to fully grasp these topics at a lower-level, I hope I managed to provide you all with a decent amount of knowledge.  
-
-I plan to keep building off this and provide you all with more content, in the near future.  
-
-Please don't hesitate to reach out to me, if you have any questions, comments, and/or concerns about the topics I've covered here.  
-
-Thanks!!
+Please don't hesitate to reach out to me, if you have any questions, comments, and/or concerns about the topics I've covered here. Thanks!!
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/stay-classy.png" alt="">
