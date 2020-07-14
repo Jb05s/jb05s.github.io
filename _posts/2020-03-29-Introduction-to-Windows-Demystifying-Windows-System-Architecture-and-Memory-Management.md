@@ -76,6 +76,7 @@ Processes
 
 Processes are management containers for threads to execute code. To start, there's a misconception that a "process is running". This is an inaccurate statement as process is never "running". A process is simply 
 a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
+
 Referring to the image above, a process consists of the following:
 - A private virtual address space
 - An executable program containing data that can be executed
@@ -91,25 +92,17 @@ We can view the list of current processes in _'Task Manager'_ or _'Process Explo
 
 Process Creation
 ---
-Now that we have the gist of what a process is, let's look at what happens during the creation of a process (i.e CreateProcess()).
-
-There are several things that need to take place prior to a process being capable of performing its operation. 
-
-There's a lot more going on behind the scenes than just opening the executable of the application. Let's take a closer look.
+Now that we have the gist of what a process is, let's look at what happens during the creation of a process (i.e CreateProcess()). There are several things that need to take place prior to a process being capable 
+of performing its operation. There's a lot more going on behind the scenes than just opening the executable of the application. Let's take a closer look.
 
 As just mentioned, opening the executable is the initial phase in the process. The executable is responsible for holding the main function of the application, amongst other things (like mapping and appropriate headers, etc).
 
-So what else is happening?
+So what else is happening? In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through a couple data structures. We'll take a look at these data structures in a moment.
 
-In addition to initializing the creation of a process, the kernel needs to manage this process. This is done through a couple data structures. We'll take a look at these data structures in a moment.
+Proceeding, the initial thread is created. A process will always need a thread associated to it.. or the process is essentially meaningless. Following the creation of the initial thread, the kernel needs to manage the threads 
+contained in the process. This is also done through a couple data structures that we'll review later.
 
-Proceeding, the initial thread is created. A process will always need a thread associated to it.. or the process is essentially meaningless.
-
-Following the creation of the initial thread, the kernel needs to manage the threads contained in the process. This is also done through a couple data structures that we'll review later.
-
-Next, now that the process and initial thread has been created and are now being managed, the Client Server Runtime SubSystem (CSRSS.exe) has notified. The Client Server Runtime SubSystem (CSRSS.exe) is the Win32 subsystem process that manages user mode processes.
-
-The last part of process creation is the loading and initialization of the required DLLs (i.e. Header files specified within a Visual Studio application), and for the main functions within each DLL to be loaded.  
+Next, now that the process and initial thread has been created and are now being managed, the Client Server Runtime SubSystem (CSRSS.exe) has notified. The Client Server Runtime SubSystem (CSRSS.exe) is the Win32 subsystem process that manages user mode processes. The last part of process creation is the loading and initialization of the required DLLs (i.e. Header files specified within a Visual Studio application), and for the main functions within each DLL to be loaded.  
 
 So here's a recap on process creation:
 1. Opening of the executable file
@@ -121,15 +114,9 @@ So here's a recap on process creation:
 - Loading the required DLLs
 - Calling the main functions
 
-Now, let's take a look at the data structures that were mentioned above, and provide some visual context.  
+Now, let's take a look at the data structures that were mentioned above, and provide some visual context. To get started, we'll need to fire up LiveKD from the [Windows SysInternals Suite](https://live.sysinternals.com/).
 
-To get started, we'll need to fire up LiveKD from the [Windows SysInternals Suite](https://live.sysinternals.com/).
-
-If you're following along, let's make sure your environment is setup correctly.
-
-After downloading LiveKD, we need to place the module in the same directory WinDbg is kept.  
-
-Upon placing LiveKD in the appropriate directory also containing WinDbg, we can proceed by opening an Administative Command Prompt in the directory containing both modules.
+If you're following along, let's make sure your environment is setup correctly. After downloading LiveKD, we need to place the module in the same directory WinDbg is kept. Upon placing LiveKD in the appropriate directory also containing WinDbg, we can proceed by opening an Administative Command Prompt in the directory containing both modules.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/livekd-w.png" alt="">
 
