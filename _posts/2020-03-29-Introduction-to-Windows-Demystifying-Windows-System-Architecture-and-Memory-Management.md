@@ -134,13 +134,7 @@ Keeping with the theme, I've requested further details on the _'Notepad.exe'_ pr
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/notepad-process-windbg.png" alt="">
 
-From the output, we can see quite a lot of information about the _'Notepad.exe'_ process. We can see the process identifier (the `'CID'` parameter in the output), the `'Token'` address (which discloses the security context of the process), etc.
-
-Due to there being so much presented in the output, I won't be going into much further details here. However, I do want to show how you can enumerate all this information by crawling the EPROCESS structure through offsets.
-
-To make sure we're working under the context of _'Notepad.exe'_ in the debugger, we're going to issue `.process <Notepad_EPROCESS_Addr>`. This will switch the active process that WinDbg is working under to the specified process.
-
-We'll know if we've successfully transitioned, if we receive a message in WinDbg stating: `Implicit process is now <EPROCESS_Addr>`.
+From the output, we can see quite a lot of information about the _'Notepad.exe'_ process. We can see the process identifier (the `'CID'` parameter in the output), the `'Token'` address (which discloses the security context of the process), etc. Due to there being so much presented in the output, I won't be going into much further details here. However, I do want to show how you can enumerate all this information by crawling the EPROCESS structure through offsets. To make sure we're working under the context of _'Notepad.exe'_ in the debugger, we're going to issue `.process <Notepad_EPROCESS_Addr>`. This will switch the active process that WinDbg is working under to the specified process. We'll know if we've successfully transitioned, if we receive a message in WinDbg stating: `Implicit process is now <EPROCESS_Addr>`.
 
 Now that WinDbg is working under the _'Notepad.exe'_ process, let's dump the `'EPROCESS'` table with the `dt NT!_EPROCESS`.
 
