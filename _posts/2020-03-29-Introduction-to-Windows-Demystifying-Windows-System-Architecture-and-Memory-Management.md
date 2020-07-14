@@ -24,6 +24,7 @@ Let's jump right into it!
 Kernel Mode vs User Mode
 ---
 To begin, in Windows, to protect user applications from accessing critical operating system data, Windows splits the processor up into two access modes. These two modes are User mode and Kernel Mode.  
+
 This schema ensures that any user application that's performing unintended actions won't disrupt the stability/availability of the overall system.  
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/privilege-rings.png" alt="">
@@ -73,9 +74,8 @@ Processes
 ---
 <img src="{{ site.url }}{{ site.baseurl }}/images/process-overview.png" alt="">
 
-Processes are management containers for threads to execute code.  
-To start, there's a misconception that a "process is running". This is an inaccurate statement as process is never "running".  
-A process is simply a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
+Processes are management containers for threads to execute code. To start, there's a misconception that a "process is running". This is an inaccurate statement as process is never "running". A process is simply 
+a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
 Referring to the image above, a process consists of the following:
 - A private virtual address space
 - An executable program containing data that can be executed
