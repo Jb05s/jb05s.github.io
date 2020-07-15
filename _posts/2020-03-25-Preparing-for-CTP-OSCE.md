@@ -6,7 +6,7 @@ excerpt: "Recently, I've been receiving a lot of questions surrounding the CTP c
 ---
 Introduction
 ---
-<img src="{{ site.url }}{{ site.baseurl }}/images/offsec-student-certified-emblem-rgb-osce.png" alt="" align="middle">
+<img src="{{ site.url }}{{ site.baseurl }}/images/osce/offsec-student-certified-emblem-rgb-osce.png" alt="" align="middle">
 
 I want to note that this isn't meant to be a 'course review' necessarily, but more of the approach I took in preparing for the CTP course and exam to become OSCE certified.
 
@@ -19,7 +19,7 @@ Before I decided that I wanted to go for the CTP/OSCE, here's where I stood:
 
 Pre-Registration Challenge
 ---
-<img src="{{ site.url }}{{ site.baseurl }}/images/fc4-me.png" alt="" align="middle">
+<img src="{{ site.url }}{{ site.baseurl }}/images/osce/fc4-me.png" alt="" align="middle">
 
 Unlike the PWK and WiFu courses, you cannot just sign-up for the CTP course. There's a [pre-registration challenge](http://www.fc4.me/) that needs to be completed. 
 
@@ -106,7 +106,7 @@ Exam: 2nd Attempt
 ---
 Long story made short, I passed on my second attempt. I submitted my exam report and was eligible for all 90 points. I received the 'We are happy to inform you' email on Christmas Eve. That email was one of the best Christmas presents I could have asked for!
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/osce-cert.png" alt="" align="middle">
+<img src="{{ site.url }}{{ site.baseurl }}/images/osce/osce-cert.png" alt="" align="middle">
 
 Exam Tips
 ---
