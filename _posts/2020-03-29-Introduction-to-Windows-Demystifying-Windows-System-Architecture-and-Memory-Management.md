@@ -27,7 +27,7 @@ To begin, in Windows, to protect user applications from accessing critical opera
 
 This schema ensures that any user application that's performing unintended actions won't disrupt the stability/availability of the overall system.  
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/privilege-rings.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/privilege-rings.png" alt="">
 
 In the illustration shown above, there's a total of seven layers (or rings) of protection. Whenever code executes, it always will have a mode associated with it. This is called the "Thread Access Mode" 
 or better known as the "Current Privilege Level (CPL)"
@@ -53,26 +53,26 @@ User Mode (CPL 3)
 User Mode is responsible for running code within user applications. This mode doesn't allow access to operating system code or data, and is denied access to system hardware. If a crash occurs in this mode, 
 the system is not effected, only in the application where the error occurred.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/app-crash.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/app-crash.png" alt="">
 
 Kernel Mode (Privileged) (CPL 0)
 ---
 In this mode, it has complete access to the kernel and device drivers. Additionally, this mode is allowed to access all system resources. Any unhandled exception in kernel mode can result in a system crash, 
 infamously known as the Blue Screen of Death (BSoD).
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/bsod.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/bsod.png" alt="">
 
 Based on the CPL you're operating in, you'll have the ability to read and write data in the segments of that CPL (and of that of the lesser). In order to go from User Mode (CPL 3) to Kernel Mode (CPL 0), a 
 "Call Gate" needs to be called. I'll shine some more light on what call gates are later in the post. We can get a bit of a visual of by viewing the 'Performance' tab within Task Manager. 
 See the figure below for detail.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/task-manager-performance.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/task-manager-performance.png" alt="">
 
 As seen in the visual, we can see when the CPU is performing operations in User Mode vs Kernel Mode. You're able to see this graph layout, by right-clicking in the graph and selecting `'Show kernel times'`.
 
 Processes
 ---
-<img src="{{ site.url }}{{ site.baseurl }}/images/process-overview.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/process-overview.png" alt="">
 
 Processes are management containers for threads to execute code. To start, there's a misconception that a "process is running". This is an inaccurate statement as process is never "running". A process is simply 
 a container (or manager) for providing resources to execute calls. Threads are what's actually "running" or executing code, not processes.  
@@ -86,9 +86,9 @@ Referring to the image above, a process consists of the following:
 
 We can view the list of current processes in _'Task Manager'_ or _'Process Explorer'_, as seen in the figure below.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/processes.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/processes.png" alt="">
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/processes-procexplorer.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/processes-procexplorer.png" alt="">
 
 Process Creation
 ---
@@ -118,35 +118,35 @@ Now, let's take a look at the data structures that were mentioned above, and pro
 
 If you're following along, let's make sure your environment is setup correctly. After downloading LiveKD, we need to place the module in the same directory WinDbg is kept. Upon placing LiveKD in the appropriate directory also containing WinDbg, we can proceed by opening an Administative Command Prompt in the directory containing both modules.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/livekd-w.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/livekd-w.png" alt="">
 
 Once the debugger is up and running, let's execute the `!process 0 0` command. This command will print out some information on all the currently running processes on the system.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/current-running-processes-windbg.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/current-running-processes-windbg.png" alt="">
 
 Hightlighted in the above image, these are addresses to each of the process' EPROCESS structure that is managed by the 'Executive' component in the Windows architecture. We'll be covering the general architecture of Windows shortly, so hang tight.
 
 If we'd like to gather more detail on a specific process that's currently running, we can issue `!process <EPROCESS_Addr>`. (See the image below for an example)
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/current-running-processes-windbg.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/current-running-processes-windbg.png" alt="">
 
 Keeping with the theme, I've requested further details on the _'Notepad.exe'_ process.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-process-windbg.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/notepad-process-windbg.png" alt="">
 
 From the output, we can see quite a lot of information about the _'Notepad.exe'_ process. We can see the process identifier (the `'CID'` parameter in the output), the `'Token'` address (which discloses the security context of the process), etc. Due to there being so much presented in the output, I won't be going into much further details here. However, I do want to show how you can enumerate all this information by crawling the EPROCESS structure through offsets. To make sure we're working under the context of _'Notepad.exe'_ in the debugger, we're going to issue `.process <Notepad_EPROCESS_Addr>`. This will switch the active process that WinDbg is working under to the specified process. We'll know if we've successfully transitioned, if we receive a message in WinDbg stating: `Implicit process is now <EPROCESS_Addr>`.
 
 Now that WinDbg is working under the _'Notepad.exe'_ process, let's dump the `'EPROCESS'` table with the `dt NT!_EPROCESS`.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-eprocess.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/notepad-eprocess.png" alt="">
 
 As we can see here, we've dumped the table of the `EPROCESS` structure, and can now identify the offsets of where specific data is placed. Let's take the `UniqueProcessId` offset at `+0x2e0` and see if it matches up with the process identifier for _'Notepad.exe'_ in _'Task Manager'_ (or _'Process Explorer'_).
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/eprocess-pid-offset.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/eprocess-pid-offset.png" alt="">
 
 Now would you look at that! By taking the sum of the base address of EPROCESS and the offset to reach UniqueProcessId, we successfully verified that it's a match! (Remember your hexadecimal to decimal conversions!)
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/oh-snap.gif" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/oh-snap.gif" alt="">
 
 The same steps can be taken to gain some insight on other important data structures; such as `KPROCESS`, `ETHREAD`, `KTHREAD`, etc.
 
@@ -159,7 +159,7 @@ To encapsulate each of these data structures, refer to the information below.
 
 Here's a high-level graph overviewing these structures and how they all mesh together.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/data-struct-overview.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/data-struct-overview.png" alt="">
 
 Threads
 ---
@@ -180,17 +180,17 @@ When you're presented with the "Status - Not Responding", this is saying that th
 
 To present a visual on threads, let's take a look at two instances of Notepad.exe. When a user runs an application; such as Notepad.exe, an initial thread is created.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/threads-init-notepad.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/threads-init-notepad.png" alt="">
 
 In the first instance of Notepad, it will be waiting for the user to request some kind of operation to be performed. Since it's not performing any kind of operation, there should only be one thread assoicated to this process.
 
 Alternatively, in the second instance of Notepad, we're going to perform an operation. For this example, let's try and open a file in Notepad. Upon clicking into the `File` tab in Notepad, and clicking the `Open File` option, we'll be able to see that additional threads are being created by the initial thread to carry out the request. See the visual below for details. 
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-compare.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/notepad-compare.png" alt="">
 
 If you'd like to see each individual thread, the thread identifier (TID), etc., we can use _'Process Explorer'_.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/thread-procexplorer.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/thread-procexplorer.png" alt="">
 
 Now that we've got some insight on processes and threads, let's proceed by discussing what objects and handles are, and how they come into play.
 
@@ -200,7 +200,7 @@ An object is a static data structure that reside in system memory space and repr
 
 Let's use _'Process Explorer'_ for further understanding.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/object-procexplorer.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/object-procexplorer.png" alt="">
 
 Kernel code can obtain a direct pointer to an object. In order for user mode code to get access to an object is by using a handle. A handle is an index in a table that points to a specifc object in kernel space. They're used as shields against user code from directly accessing an object in the kernel.
 
@@ -212,7 +212,7 @@ Some important information to understand:
 
 Again, we can use _'Process Explorer'_ to for more of a visual.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/handle-procexplorer.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/handle-procexplorer.png" alt="">
 
 As we can see, we're able to view the Handle Table for each process to see the handles and objects residing in that given process.
 
@@ -222,7 +222,7 @@ Windows implements virtual memory based on a linear memory model. Every process 
 
 Let's use the following diagram to go into more detail.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-mapping.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/virtual-memory-mapping.png" alt="">
 
 Virtual memory may be mapped to physical memory, but can also be stored on disk (Page file)
 Processes access memory (via a pointer) regardless of where it resides
@@ -242,7 +242,7 @@ When a process allocates memory, it is mapped to physcial memory (Blue blocks in
 
 In task manager or process explorer, under the 'Details' tab, you can see the 'Memory (Private Working Set)' column.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/private-working-set.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/private-working-set.png" alt="">
 
 - 'Private' meaning the memory is not shared
 	- Allocating memory via 'malloc' is considered private memory, this is what is shown
@@ -252,13 +252,13 @@ In task manager or process explorer, under the 'Details' tab, you can see the 'M
 	- This column shows how much memory is being used by the process
 - The values under this column are always divisible by 4 (The size of a memory page)
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/commit-memory-size.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/commit-memory-size.png" alt="">
 
 Virtual Memory Layout
 ---
 Now, let's talk a little bit about Virtual Memory, how it works, and the differences between 32-bit and 64-bit virtual memory space.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-layout.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/virtual-memory-layout.png" alt="">
 
 As seen the in 'Virtual Memory Layout' illustration, shown above, 32-bit and 64-bit architecture have quite a huge gap between one another.
 
@@ -276,7 +276,7 @@ However, upon Windows 8.1 release, the virtual memory space expanded.
 - 128 TB User Process Space
 - 128 TB System (Kernel) Space
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/virtual-memory-layout-81.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/virtual-memory-layout-81.png" alt="">
 
 If you noticed, the 64-bit architecture virtual memory layout has a section that's 'Unmapped'.  
 This space is unmapped because of windows restrictions and limitations in CPUs, at this time.
@@ -285,7 +285,7 @@ General Architecture of Windows
 ---
 Now that we've covered what processes, threads, objects and handles, and virtual memory.. let's go over the Windows general architecture.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/general-arch.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/general-arch.png" alt="">
 
 In the above illustration, you'll see quite a few components that makeup the general architecture that Window's is built upon.
 
@@ -316,7 +316,7 @@ So how do we go from User Mode to Kernel Mode? What does it look like under the 
 
 Let's dive a little deeeper into this process by following going through the components described in the previous section. We'll make use the following graphic to provide some visualization. _Note: I will be demonstrating the flow of a function call on Windows 10 (x64) RedStone 2._
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/call-flow1.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/call-flow1.png" alt="">
 
 When we request an operation; such as CreateFile(), the following process occurs:
 Let's take a user application; such as Notepad.exe, and let's say it wants to create a new file.
@@ -330,17 +330,17 @@ Let's take a user application; such as Notepad.exe, and let's say it wants to cr
 
 To make a little more sense of this, let's take a look at these first few steps in WinDbg. In order to debug an application in WinDbg, we'll open up Notepad.exe under the 'Open an Executable' option under the 'File' tab.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/open-executable.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/open-executable.png" alt="">
 
 Once we attach WinDbg to Notepad, we'll see that we automatically get presented with a breakpoint. From here, to demonstrate some of the other topics we've covered up to this point, we can look at the current threads running and its associated process for Notepad.exe, using the `~` command.
 
 The process identifier for Notepad.exe (Using Task Manager):  
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-tilde-notepad-process.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/windbg-tilde-notepad-process.png" alt="">
 
 The thread identifier for Notepad.exe (Using Process Explorer):
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-tilde-notepad-thread.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/windbg-tilde-notepad-thread.png" alt="">
 
 Let's proceed by setting a breakpoint on CreateFileW() in WinDbg. We can set this breakpoint with `bp Kernel32!CreateFileW` (or `bp KernelBase!CreateFileW`)
 - KernelBase and Kernel32 go hand-in-hand
@@ -352,7 +352,7 @@ Let's proceed by setting a breakpoint on CreateFileW() in WinDbg. We can set thi
 
 After setting a breakpoint, we need to invoke an action within Notepad.exe that'll call the CreateFileW() function (In this case, we'll try saving a new text document) Upon saving the new file, we hit our breakpoint and can dump the callstack to see what occured leading up to the CreateFileW() function.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-callstack-createfilew.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/notepad-callstack-createfilew.png" alt="">
 
 From this point, we've seen what happens between the 'User Application - Notepad' and the 'Subsystem DLL - Kernel32.DLL'. Now let's see what happens between 'Subsystem DLL - Kernel32.DLL' and 'NTDLL.DLL'.  
 
@@ -360,11 +360,11 @@ Let's set a breakpoint on NtCreateFile with the `bp NTDLL!NtCreateFile`.
 
 After successfully setting the breakpoint, and allowing execution to continue, we'll hit the breakpoint on NtCreateFile(). If we dump the callstack with `k`, we can get a little more details on what happened leading up to NtCreateFile().
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-callstack-ntcreatefile.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/notepad-callstack-ntcreatefile.png" alt="">
 
 Let's see a little more detail on what's going on in the NtCreateFile() function by using the unassemble command `u` and see what instructions are going to be executed.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-ntcreatefile-unassembly.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/notepad-ntcreatefile-unassembly.png" alt="">
 
 Notice in the screen capture above the `mov eax, 55h` instruction. This instruction discloses the System Service Number (SSN) for the NtCreateFile() function. A System Service Number (SSN) is a number in an array managed by the System Service Descriptor Table (SSDT).
 
@@ -373,7 +373,7 @@ Then NTDLL.DLL will use `syscall` or `sysenter` to the kernel routine `Nt!NtCrea
 
 If we keep tracing through the instructions, we'll see that we eventually hit the `syscall` instruction.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/notepad-ntcreatefile-syscall.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/notepad-ntcreatefile-syscall.png" alt="">
 
 Now, if we were to proceed with the execution of this function, we'll see that we don't see anything happening in Kernel Mode. Since we're debugging the application itself, we won't be able to analyze anything happening in Kernel Mode.
 
@@ -406,11 +406,11 @@ Now that we're successfully debugging the live system, let's pick-up where we le
 
 We can validate this by using WinDbg to analyze the System Service Descriptor Table (SSDT). In WinDbg, we can see the Service Descriptor Table structure by using the `x nt!KiService*` command. This will provide us the information to the pointer of the SSDT itself - `NT!KiServiceTable`. From here, we can dump the SSDT with the `dq NT!KiServiceTable` command. This command output will provide us with the relative offset to the kernel routines, at least on 64-bit architecture.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-kiservice.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/windbg-kiservice.png" alt="">
 
 For us to get the absolute address of a kernel routine on a 64-bit system, we'll have to do the following illustrated in the visual below.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/windbg-kiservicetable.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/windbg-kiservicetable.png" alt="">
 
 Using Nt!KiServiceTable and the SSN we identified earlier, we can calculate the relative offset to the kernel routine for `NT!NtCreateFile`.
 
@@ -419,14 +419,14 @@ Now that we have the relative offset, we can use that in the following formula t
 
 As we can see, we successfully identified that the SSN for `NTDLL!NtCreateFile` correctly points to `NT!NtCreateFile`!
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/what-the.gif" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/what-the.gif" alt="">
 
 We could use this same formula to calculate all the SSDT routines, if we wanted to. We can see this in action in the screenshot shown below.
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/enum-ssdt.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/enum-ssdt.png" alt="">
 
 Below is another example on the flow of a function call for the ReadFile() function (alternate graphic format).
-<img src="{{ site.url }}{{ site.baseurl }}/images/call-flow2.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/call-flow2.png" alt="">
 
 References
 ---
@@ -443,4 +443,4 @@ Please don't hesitate to reach out to me, if you have any questions, comments, a
 
 Thanks!!
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/stay-classy.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/demystify/stay-classy.png" alt="">
