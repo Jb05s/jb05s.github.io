@@ -50,11 +50,10 @@ Port(s) Utilized - Sends input over RPC/DCOM (TCP Port 135 --> TCP Port >= 1024)
 	- Filename is a date to timestamp coversion from the initial time of connection
 - Known to be used by administrators (Stealthiest option)
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-cmd.png" alt="">
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/temp-file-wmiexec.png" alt="">
-
-
 Wrapping Up
 ---
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/mimikatz.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-cmd.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/temp-file-wmiexec.png" alt="">
