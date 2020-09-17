@@ -8,6 +8,7 @@ Overview
 ---
 In this short post, I'd like to discuss a few tools available in [Impacket](https://github.com/SecureAuthCorp/impacket) and what these tools are doing "under the hood".
 
+__Note: The processes shown in this blog post were performed in a personal lab environment and for the sole purpose of discussing the topics covered in this post.__
 
 The Situation
 ---
