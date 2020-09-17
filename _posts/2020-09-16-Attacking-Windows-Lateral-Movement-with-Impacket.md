@@ -46,14 +46,17 @@ WMIExec
 ---
 Port(s) Utilized - Sends input over RPC/DCOM (TCP Port 135 --> TCP Port >= 1024) and receives output over SMB (TCP Port 445)
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-cmd.png" alt="">
+
 - Writes temporary file to the ADMIN$ directory
 	- Filename is a date to timestamp coversion from the initial time of connection
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/temp-file-wmiexec.png" alt="">
+
 - Known to be used by administrators (Stealthiest option)
 
 Wrapping Up
 ---
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/mimikatz.png" alt="">
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-cmd.png" alt="">
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/temp-file-wmiexec.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-pth.png" alt="">
