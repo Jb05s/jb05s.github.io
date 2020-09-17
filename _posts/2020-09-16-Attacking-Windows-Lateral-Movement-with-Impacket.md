@@ -43,7 +43,7 @@ SMBExec
 
 WMIExec
 ---
-Port(s) Utilized - Sends input over RPC/DCOM (TCP Port 135 0 --> TCP Port >= 1024) and receives output over SMB (TCP Port 445)
+Port(s) Utilized - Sends input over RPC/DCOM (TCP Port 135 --> TCP Port >= 1024) and receives output over SMB (TCP Port 445)
 
 - Writes temporary file to the ADMIN$ directory
 	- Filename is a date to timestamp coversion from the initial time of connection
