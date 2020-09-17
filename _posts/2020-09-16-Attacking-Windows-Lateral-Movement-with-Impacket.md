@@ -6,7 +6,7 @@ excerpt: "What's the differences between WMIExec, PSExec, and SMBExec? Let's tak
 ---
 Overview
 ---
-In this short post, I'd like to discuss a few tools available in [SecureAuthCorp's Impacket](https://github.com/SecureAuthCorp/impacket) and what these tools are doing "under the hood".
+In this short post, I'd like to discuss a few tools available in [Impacket](https://github.com/SecureAuthCorp/impacket) and what these tools are doing "under the hood".
 
 
 The Situation
