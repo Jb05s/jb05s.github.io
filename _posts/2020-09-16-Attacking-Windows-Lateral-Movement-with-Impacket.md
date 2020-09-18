@@ -46,12 +46,11 @@ SMBExec
 
 WMIExec
 ---
-Port(s) Utilized - Sends input over RPC/DCOM (TCP Port 135 --> TCP Port >= 1024) and receives output over SMB (TCP Port 445)
+WMIExec (Windows Management Instrumentation) allows remote access to machines by initially communicating with Remote Procedure Calls (RPC) over TCP port 135. After initial communication is established, a random port between over 1024 is used for negotiation. 
+
+This connection is used to send input to the remote machine. The input is executed in a CMD.EXE process and the output is saved to a temporary file within the ADMIN$ share on the remote machine. The temporary file can be easily be identified in the ADMIN$ share by looking for a filename starting with `__` followed by the current date to timestamp conversion.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-cmd.png" alt="">
-
-- Writes temporary file to the ADMIN$ directory
-	- Filename is a date to timestamp coversion from the initial time of connection
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/temp-file-wmiexec.png" alt="">
 
