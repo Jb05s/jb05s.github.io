@@ -54,7 +54,13 @@ This connection is used to send input to the remote machine. The input is execut
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/temp-file-wmiexec.png" alt="">
 
-- Known to be used by administrators (Stealthiest option)
+Let's take a closer look at what's going on here. For the sake of analysis, let's request the remote machine to start an instance of Notepad.exe. We'll notice that by executing this command will cause WMIExec to hang.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-notepad.png" alt="">
+
+If we jump over to the remote machine and fire up [Process Explorer](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer), we can identify and analyze Notepad.exe.
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/procexplorer-wmiexec.png" alt="">
 
 Wrapping Up
 ---
