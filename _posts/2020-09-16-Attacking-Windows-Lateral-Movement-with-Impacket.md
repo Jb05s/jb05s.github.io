@@ -20,11 +20,13 @@ So let's say you're on an internal network assessment. You've established an ini
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/begin-enum.png" alt="">
 
-Through your enumeration, you've identified that the user account initially compromised has Administrative privileges on machines in the network. 
+Through your enumeration, you've identified that the user account initially compromised has Administrative privileges on a machine in the network. 
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/find-localadminaccess-usera.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/powerview-clientA-admin.png" alt="">
 
-From here, you'll want to perform lateral movement to gain access to those machines. This blog post will cover some of these lateral movement techniques. Let's talk about some ways we can go about performing lateral movement - specifically with PSExec, SMBExec, and WMIExec available with Impacket.
+From here, you'll want to perform lateral movement to gain access the machine. This blog post will cover some of these lateral movement techniques. Let's talk about some ways we can go about performing lateral movement - specifically with PSExec, SMBExec, and WMIExec available with Impacket.
 
 PSExec
 ---
