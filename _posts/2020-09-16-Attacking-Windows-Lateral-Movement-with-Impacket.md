@@ -48,6 +48,8 @@ WMIExec
 ---
 WMIExec (Windows Management Instrumentation) allows remote access to machines by initially communicating with Remote Procedure Calls (RPC) over TCP port 135. After initial communication is established, a random port between over 1024 is used for negotiation. 
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-diagram.png" alt="">
+
 This connection is used to send input to the remote machine. The input is executed in a CMD.EXE process and the output is saved to a temporary file within the ADMIN$ share on the remote machine. The temporary file can be easily be identified in the ADMIN$ share by looking for a filename starting with "`__`". The numerical value proceeding the two underscores may seem random, however, it's actually the current date and time converted to a timestamp.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-cmd.png" alt="">
