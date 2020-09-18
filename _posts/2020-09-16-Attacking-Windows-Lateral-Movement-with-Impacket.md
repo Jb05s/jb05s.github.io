@@ -62,6 +62,10 @@ If we jump over to the remote machine and fire up [Process Explorer](https://doc
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/procexplorer-wmiexec.png" alt="">
 
+As we can see, highlighted in purple, the input we sent is being executed within a CMD.exe process. We can also notice that the output from the command is being redirected to the temporary file located in the ADMIN$ share.
+
+After the threads within the process complete their tasks, the process is terminated and the output is written to the temporary file, the remote machine will send the output back to our machine over SMB. 
+
 Wrapping Up
 ---
 Now that we've moved laterally on the network to a machine we have Administrative privileges, we can now perform additional enumeration to identify our next steps to gaining privileged access on the domain network.
