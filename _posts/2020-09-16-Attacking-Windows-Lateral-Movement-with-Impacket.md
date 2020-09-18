@@ -46,7 +46,7 @@ SMBExec
 
 WMIExec
 ---
-WMIExec (Windows Management Instrumentation) allows remote access to machines by initially communicating with Remote Procedure Calls (RPC) over TCP port 135. After initial communication is established, a random port between over 1024 is used for negotiation. 
+WMIExec (Windows Management Instrumentation) allows remote access to machines by initially communicating with Remote Procedure Calls (RPC) over TCP port 135. After initial communication is established, a random port over 1024 is used for negotiation. 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-diagram.png" alt="">
 
