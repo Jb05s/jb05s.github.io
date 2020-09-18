@@ -59,6 +59,17 @@ Port(s) Utilized - Sends input over RPC/DCOM (TCP Port 135 --> TCP Port >= 1024)
 
 Wrapping Up
 ---
+Now that we've moved laterally on the network to a machine we have Administrative privileges, we can now perform additional enumeration to identify our next steps to gaining privileged access on the domain network.
+
+One option could be dumping the memory of the Local Security Authority Subsystem Service (LSASS.EXE) process and extract/view cached credentials (Cleartext passwords, NTLM hashes, etc.).
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/mimikatz.png" alt="">
 
+What if you run into a situation where you've successfully extracted credentials from the LSASS.exe process, but you only have an NTLM hash of a user with admin privileges somewhere else on the network?
+
+Impacket (and other tools) also supports pass-the-hash techniques. In the following screenshot, we're able to supply the NTLM hash of a User in Impacket's - WMIExec, as an argument, to obtain an interactive shell on a remote machine that we have admin privileges.
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-pth.png" alt="">
+
+In my next post, I'll talk about the pass-the-hash technique, along with how NTLM authentication works. Stay tuned and stay safe!
+
