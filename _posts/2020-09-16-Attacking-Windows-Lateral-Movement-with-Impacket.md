@@ -34,7 +34,7 @@ This first Impacket tool we'll discuss is PSExec. PSExec allows users to connect
 
 Once the binary file is written to the ADMIN$ share, it's followed up by calling SVCManager on the remote machine to create a new service, using the binary file that was just written. 
 
-Imagine this step as running: `sc create [serviceName] binPath= "C:\Windows\[reverse-tcp].exe"`.
+Imagine this step as running: `sc create [serviceName] binPath= "C:\Windows\[uploaded-binary].exe"`.
 
 Once the named pipe is established, all command input and output between you and the remote machine is communicating over the SMB protocol (445/TCP).
 
