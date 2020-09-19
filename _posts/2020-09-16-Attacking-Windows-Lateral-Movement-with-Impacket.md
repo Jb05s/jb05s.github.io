@@ -48,8 +48,16 @@ Once the named pipe is established, all command input and output between you and
 	- 1 System Event IDs: 7045
 	- 12 Security Event IDs: 4672, 4624, 4634
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-eventlog-sys.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-eventlog-sec.png" alt="">
+
 SMBExec
 ---
+- SMBExec is very similar to PSExec, however, does not drop a binary to disk
+	- Echoes and executes a batch file containing the command string to execute
+	- Saves the command output to a temp file
+	- Every command executed in SMBExec is run in a new service
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-diagram.png" alt="">
 
@@ -63,16 +71,14 @@ SMBExec
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
 
+- Stealthier than PSExec, but still leaves quite a lot of logs
+	- Event logs generated (To establish communication and run a single command, then exit SMBExec)
+		- 4 System Event IDs: 7045, 7009
+		- 3 Security Event IDs: 4672, 4624, 4634
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-eventlogs.png" alt="">
 
-- SMBExec is very similar to PSExec, however, does not drop a binary to disk
-	- Echoes and executes a batch file containing the command string to execute
-	- Saves the command output to a temp file
-	- Every command executed in SMBExec is run in a new service
-	- Stealthier than PSExec, but still leaves quite a lot of logs
-		- Event logs generated (To establish communication and run a single command, then exit SMBExec)
-			- 4 System Event IDs: 7045, 7009
-			- 3 Security Event IDs: 4672, 4624, 4634
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-eventlogs-sec.png" alt="">
 
 WMIExec
 ---
