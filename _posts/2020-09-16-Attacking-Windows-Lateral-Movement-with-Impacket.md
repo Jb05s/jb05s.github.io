@@ -96,6 +96,11 @@ After the threads within the process complete their tasks, the process is termin
 
 __Note: It's worth noting that if you abort WMIExec while waiting for output back from the remote machine the temporary file will not be deleted on the remote system.__
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-eventlogs.png" alt="">
+
+- Event logs generated (To establish communication and run a single command)
+			- 10 Security Event IDs: 4672, 4624
+
 Wrapping Up
 ---
 Now that we've moved laterally on the network to a machine we have Administrative privileges, we can now perform additional enumeration to identify our next steps to gaining privileged access on the domain network.
