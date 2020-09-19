@@ -48,7 +48,9 @@ As shown in the image above, we're writing the binary file `PDSwlQrA.exe` to the
 
 Now that we've got a general idea of what the tool is doing, what are the potential artifacts that could be left behind.. and what event logs are we generating on the remote system?
 
-Let's say we're utilizing PSExec and our connection abruptly errors out. This means that artifacts on the remote system weren't cleaned up and we need to go back and manually clean them up ourselves. (Mind you, this applies to nearly all situations where an abrupt error that causes the connection to die).
+Let's say we're utilizing PSExec and our connection abruptly errors out or you accidently close the process window. This means that artifacts on the remote system weren't cleaned up and we need to go back and manually clean them up ourselves. (Mind you, this applies to nearly all situations where an abrupt error that causes the connection to die).
+
+In regard to PSExec, you will have to make your way back onto the remote machine and remove the binary file, kill the service, and verify that whatever you were performing at the time of the abrupt error is killed.
 
 As for event logs generated on the remote machine, here's a breakdown:
 - Event logs generated (To establish communication and run a single command, then exit PSExec)
