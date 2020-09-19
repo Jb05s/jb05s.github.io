@@ -54,6 +54,10 @@ SMBExec
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-procexplorer.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad.png" alt="">
+
 - SMBExec is very similar to PSExec, however, does not drop a binary to disk
 	- Echoes and executes a batch file containing the command string to execute
 	- Saves the command output to a temp file
