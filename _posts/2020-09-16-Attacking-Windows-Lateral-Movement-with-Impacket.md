@@ -54,9 +54,9 @@ SMBExec
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-procexplorer.png" alt="">
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
-
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-eventlogs.png" alt="">
 
