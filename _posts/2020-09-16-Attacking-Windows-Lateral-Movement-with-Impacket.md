@@ -54,15 +54,20 @@ SMBExec
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad-run.png" alt="">
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-procexplorer.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-eventlogs.png" alt="">
 
 - SMBExec is very similar to PSExec, however, does not drop a binary to disk
 	- Echoes and executes a batch file containing the command string to execute
 	- Saves the command output to a temp file
 	- Every command executed in SMBExec is run in a new service
 	- Stealthier than PSExec, but still leaves quite a lot of logs
+		- 2 event logs generated per command run (System Event IDs: 7045, 7009)
 
 
 WMIExec
