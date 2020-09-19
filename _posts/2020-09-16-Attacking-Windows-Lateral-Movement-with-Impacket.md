@@ -30,6 +30,11 @@ From here, you'll want to perform lateral movement to gain access the machine. T
 
 PSExec
 ---
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-diagram.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-cmd.png" alt="">
+
 - PSExec sends/receives data over SMB (Port 445) via a named pipe
 	- Drops files to disk to startup a service and enable a named pipe (Can be detected by AV)
 	- Loudest of the three techniques
