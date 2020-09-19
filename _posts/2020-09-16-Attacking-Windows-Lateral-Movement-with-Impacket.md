@@ -65,7 +65,7 @@ SMBExec
 	- Saves the command output to a temp file
 	- Every command executed in SMBExec is run in a new service
 	- Stealthier than PSExec, but still leaves quite a lot of logs
-		- Event logs generated (To establish communication and running a single command)
+		- Event logs generated (To establish communication and run a single command)
 			- 4 System Event IDs: 7045, 7009
 			- 2 Security Event IDs: 4672, 4624
 
