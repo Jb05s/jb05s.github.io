@@ -44,6 +44,10 @@ Once the named pipe is established, all command input and output between you and
 
 - Drops files to disk to startup a service and enable a named pipe (Can be detected by AV)
 
+- Event logs generated (To establish communication and run a single command, then exit PSExec)
+	- 1 System Event IDs: 7045
+	- 12 Security Event IDs: 4672, 4624, 4634
+
 SMBExec
 ---
 
@@ -66,9 +70,9 @@ SMBExec
 	- Saves the command output to a temp file
 	- Every command executed in SMBExec is run in a new service
 	- Stealthier than PSExec, but still leaves quite a lot of logs
-		- Event logs generated (To establish communication and run a single command)
+		- Event logs generated (To establish communication and run a single command, then exit SMBExec)
 			- 4 System Event IDs: 7045, 7009
-			- 2 Security Event IDs: 4672, 4624
+			- 3 Security Event IDs: 4672, 4624, 4634
 
 WMIExec
 ---
@@ -98,8 +102,8 @@ __Note: It's worth noting that if you abort WMIExec while waiting for output bac
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-eventlogs.png" alt="">
 
-- Event logs generated (To establish communication and run a single command)
-			- 10 Security Event IDs: 4672, 4624
+- Event logs generated (To establish communication and run a single command, then exit WMIExec)
+			- 14 Security Event IDs: 4672, 4624, 4634
 
 Wrapping Up
 ---
