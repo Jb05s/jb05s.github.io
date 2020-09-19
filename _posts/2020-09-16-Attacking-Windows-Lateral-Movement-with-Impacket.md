@@ -61,22 +61,35 @@ As for event logs generated on the remote machine, here's a breakdown:
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-eventlog-sec.png" alt="">
 
+In the next section, we'll be talking a little bit about SMBExec. SMBExec operates quite similarly to PSExec, but has some minor differences.
+
 SMBExec
 ---
-- SMBExec is very similar to PSExec, however, does not drop a binary to disk
-	- Echoes and executes a batch file containing the command string to execute
-	- Saves the command output to a temp file
-	- Every command executed in SMBExec is run in a new service
+As just mentioned above, SMBExec is very similar to PSExec, however, SMBExec doesn't drop a binary file to disk. SMBExec utilized a batch file, along with a temporary file, to execute and relay messages back. Just like PSExec, SMBExec sends input and receives output over the SMB protocol (445/TCP).
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-diagram.png" alt="">
 
+Let's take a closer look at how SMBExec works. Let's use SMBExec to establish an interactive connection to the remote machine.
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-cmd.png" alt="">
+
+As we can see in the image above, we've successfully established a connection to the target machine. For analysis purposes, let's execute a command to request an instance of `Notepad.exe` to run.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad-run.png" alt="">
 
+As we'll quickly see, we lose our ability to send further input to the remote machine. This is happening because we're still waiting for the command output from the remote machine.. which we'll never receive. This situation is ideal for analysis over on the remote machine.
+
+If we head over to the remote machine and open up an instance of [Process Explorer](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer), we can locate the Notepad.exe process and review the process tree.
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-procexplorer.png" alt="">
 
+We can see that the Notepad.exe process is a child process to CMD.exe. If we hover over CMD.exe, we can see that it's executing whatever data is stored in `C:\Windows\TEMP\execute.bat`. Let's quickly read what data is stored in this file.
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad.png" alt="">
+
+Upon reading the data in the `execute.bat` file, we notice that our input sent over to the remote machine was appended to the beginning of the file.
+
+The batch file is essentially taking our input sent over to the remote machine, executing it, and redirecting the output to a temporary file named `__output` located in `\\127.0.0.1\C$`.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
 
@@ -101,11 +114,11 @@ This connection is used to send input to the remote machine. The input is execut
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/temp-file-wmiexec.png" alt="">
 
-Let's take a closer look at what's going on here. For the sake of analysis, let's request the remote machine to start an instance of Notepad.exe. We'll notice that by executing this command will cause WMIExec to hang.
+Let's take a closer look at what's going on here. Again, for the sake of analysis, let's request the remote machine to start an instance of Notepad.exe. We'll notice that by executing this command will cause WMIExec to hang.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-notepad.png" alt="">
 
-If we jump over to the remote machine and fire up [Process Explorer](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer), we can identify and analyze Notepad.exe.
+If we jump over to the remote machine and fire up Process Explorer, we can identify and analyze Notepad.exe.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/procexplorer-wmiexec.png" alt="">
 
