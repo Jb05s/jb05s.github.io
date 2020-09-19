@@ -66,7 +66,9 @@ If we jump over to the remote machine and fire up [Process Explorer](https://doc
 
 As we can see, highlighted in purple, the input we sent is being executed within a CMD.exe process. We can also notice that the output from the command is being redirected to the temporary file located in the ADMIN$ share.
 
-After the threads within the process complete their tasks, the process is terminated and the output is written to the temporary file. Then the output stored within the temporary file will be sent back to our machine over SMB. 
+After the threads within the process complete their tasks, the process is terminated and the output is written to the temporary file. Then the output stored within the temporary file will be sent back to our machine over SMB.
+
+__Note: It's worth noting that if you abort WMIExec while waiting for output back from the remote machine the temporary file will not be deleted on the remote system.__
 
 Wrapping Up
 ---
