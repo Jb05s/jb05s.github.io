@@ -47,6 +47,7 @@ Once the named pipe is established, all command input and output between you and
 SMBExec
 ---
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-diagram.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-cmd.png" alt="">
 
