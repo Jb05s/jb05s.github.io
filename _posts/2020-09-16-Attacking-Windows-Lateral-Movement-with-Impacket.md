@@ -34,9 +34,9 @@ PSExec
 ---
 This first Impacket tool we'll discuss is PSExec. PSExec allows users to connect to remote machines and execute commands over a named pipe. The named pipe is established through a binary file that's written to the ADMIN$ share on the remote machine. 
 
-Once the binary file is written to the ADMIN$ share, it's followed up by calling SVCManager on the remote machine to create a new service, using the binary file that was just written. 
+Once the binary file is written to the ADMIN$ share, SVCManager is called on the remote machine to create a new service pointing to the binary file. 
 
-Imagine this step as running: `sc create [serviceName] binPath= "C:\Windows\[uploaded-binary].exe"`.
+You can imagine this step as running: `sc create [serviceName] binPath= "C:\Windows\[uploaded-binary].exe"`.
 
 Once the named pipe is established, all command input and output between you and the remote machine is communicating over the SMB protocol (445/TCP).
 
