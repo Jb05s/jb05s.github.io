@@ -8,11 +8,11 @@ Overview
 ---
 In this short post, I'd like to discuss a few tools available in [Impacket](https://github.com/SecureAuthCorp/impacket) and what these tools are doing "under the hood".
 
-__Note: The processes shown in this blog post were performed in a personal lab environment and for the sole purpose of discussing the topics covered in this post.__
+__Note: The processes shown in this blog post were performed in a personal lab environment and for the sole purpose of discussing the tools covered in this post.__
 
 The Situation
 ---
-So let's say you're on an internal network assessment. You've established an initial foothold through various means and began performing network enumeration. For simplicity in the blog post, to gain a foothold on the network, I'll be using [Responder](https://github.com/SpiderLabs/Responder) to capture and crack an NTLMv2 hash offline using [Hashcat](https://github.com/hashcat).
+So let's say you're on an internal network assessment. You've established an initial foothold and obtained user credentials, and began performing network enumeration. For simplicity in the blog post, for obtaining valid user credentials, I'll be using [Responder](https://github.com/SpiderLabs/Responder) to capture and crack an NTLMv2 hash offline using [Hashcat](https://github.com/hashcat).
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/responder.png" alt="">
 
@@ -20,13 +20,15 @@ So let's say you're on an internal network assessment. You've established an ini
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/begin-enum.png" alt="">
 
-Through your enumeration, you've identified that the user account initially compromised has Administrative privileges on a machine in the network. 
+Through your enumeration, you've identified that the user account you obtained has Administrative privileges on a machine in the network. 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/find-localadminaccess-usera.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/powerview-clientA-admin.png" alt="">
 
-From here, you'll want to perform lateral movement to gain access the machine. This blog post will cover some of these lateral movement techniques. Let's talk about some ways we can go about performing lateral movement - specifically with PSExec, SMBExec, and WMIExec available with Impacket.
+From here, this is where you'll want to perform lateral movement to gain access the machine. This blog post will cover some lateral movement techniques that can be used. 
+
+Let's talk about some ways we can go about performing lateral movement - specifically with PSExec, SMBExec, and WMIExec available in Impacket.
 
 PSExec
 ---
