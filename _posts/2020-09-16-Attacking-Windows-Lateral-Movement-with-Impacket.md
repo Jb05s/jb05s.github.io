@@ -46,7 +46,7 @@ Let's take a closer look at what PSExec is doing.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-cmd.png" alt="">
 
-As shown in the image above, we're writing the binary file `PDSwlQrA.exe` to the ADMIN$ share on the remote machine. We can verify if the binary file exists on the remote system, by listing the files and directories in `\\127.0.0.1\ADMIN$`.
+As shown in the image above, we're writing the binary file `PDSwlQrA.exe` to the ADMIN$ share on the remote machine. We can verify if the binary file exists on the remote system by listing the files and directories in `\\127.0.0.1\ADMIN$`.
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-binary.png" alt="">
 
