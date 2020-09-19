@@ -50,7 +50,9 @@ As shown in the image above, we're writing the binary file `PDSwlQrA.exe` to the
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-binary.png" alt="">
 
-Now that we've got a general idea of what the tool is doing, what are the potential artifacts that could be left behind.. and what event logs are we generating on the remote system?
+Now that the binary has been successfully written to the remote machine, this is where SVCManager steps in to start a service and create that named pipe back to our machine. We'll see later on, when review the remote machine's event logs, that SVCManager was called.
+
+With a general idea of what the tool is doing, what are the potential artifacts that could be left behind.. and what event logs are we generating on the remote system?
 
 Let's say we're utilizing PSExec and our connection abruptly errors out or you accidently close the process window. This means that artifacts on the remote system weren't cleaned up and we need to go back and manually clean them up ourselves. (Mind you, this applies to nearly all situations where an abrupt error that causes the connection to die).
 
