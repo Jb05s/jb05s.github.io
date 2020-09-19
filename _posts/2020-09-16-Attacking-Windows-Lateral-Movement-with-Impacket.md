@@ -40,6 +40,8 @@ You can imagine this step as running: `sc create [serviceName] binPath= "C:\Wind
 
 Once the named pipe is established, all command input and output between you and the remote machine is communicating over the SMB protocol (445/TCP).
 
+Let's take a closer look at what PSExec is doing.
+
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-diagram.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-cmd.png" alt="">
