@@ -42,11 +42,18 @@ Once the named pipe is established, all command input and output between you and
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-cmd.png" alt="">
 
-- Drops files to disk to startup a service and enable a named pipe (Can be detected by AV)
+As shown in the image above, we're writing the binary file `PDSwlQrA.exe` to the ADMIN$ share on the remote machine. We can verify if the binary file exists on the remote system, by listing the files and directories in `\\127.0.0.1\ADMIN$`.
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-binary.png" alt="">
+
+Now that we've got a general idea of what the tool is doing, what are the potential artifacts that could be left behind.. and what event logs are we generating on the remote system?
+
+Let's say we're utilizing PSExec and our connection abruptly errors out. This means that artifacts on the remote system weren't cleaned up and we need to go back and manually clean them up ourselves. (Mind you, this applies to nearly all situations where an abrupt error that causes the connection to die).
+
+As for event logs generated on the remote machine, here's a breakdown:
 - Event logs generated (To establish communication and run a single command, then exit PSExec)
-	- 1 System Event IDs: 7045
-	- 12 Security Event IDs: 4672, 4624, 4634
+	- 1 System Event IDs: 7045 (Service Started)
+	- 12 Security Event IDs: 4672 (Special Privilege Logon), 4624 (Logon), 4634 (Logoff)
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/psexec-eventlog-sys.png" alt="">
 
@@ -73,8 +80,8 @@ SMBExec
 
 - Stealthier than PSExec, but still leaves quite a lot of logs
 	- Event logs generated (To establish communication and run a single command, then exit SMBExec)
-		- 4 System Event IDs: 7045, 7009
-		- 3 Security Event IDs: 4672, 4624, 4634
+		- 4 System Event IDs: 7045 (Service Started), 7009 (Service Error - Timeout)
+		- 3 Security Event IDs: 4672 (Special Privilege Logon), 4624 (Logon), 4634 (Logoff)
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-eventlogs.png" alt="">
 
@@ -109,7 +116,7 @@ __Note: It's worth noting that if you abort WMIExec while waiting for output bac
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/wmiexec-eventlogs.png" alt="">
 
 - Event logs generated (To establish communication and run a single command, then exit WMIExec)
-			- 14 Security Event IDs: 4672, 4624, 4634
+	- 14 Security Event IDs: 4672 (Special Privilege Logon), 4624 (Logon), 4634 (Logoff)
 
 Wrapping Up
 ---
