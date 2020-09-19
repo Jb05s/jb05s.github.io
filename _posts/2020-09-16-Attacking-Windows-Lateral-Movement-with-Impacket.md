@@ -50,13 +50,11 @@ SMBExec
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-cmd.png" alt="">
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-bat.png" alt="">
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
-
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad-run.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-procexplorer.png" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-output.png" alt="">
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-notepad.png" alt="">
 
