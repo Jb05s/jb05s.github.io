@@ -32,9 +32,7 @@ Let's talk about some ways we can go about performing lateral movement - specifi
 
 PSExec
 ---
-This first Impacket tool we'll discuss is PSExec. PSExec allows users to connect to remote machines and execute commands over a named pipe. The named pipe is established through a binary file that's written to the ADMIN$ share on the remote machine. 
-
-Once the binary file is written to the ADMIN$ share, SVCManager is called on the remote machine to create a new service pointing to the binary file. 
+This first Impacket tool we'll discuss is PSExec. PSExec allows users to connect to remote machines and execute commands over a named pipe. The named pipe is established through a binary file that's written to the ADMIN$ share on the remote machine by utilizing SVCManager. 
 
 You can imagine this step as running: `sc create [serviceName] binPath= "C:\Windows\[uploaded-binary].exe"`.
 
