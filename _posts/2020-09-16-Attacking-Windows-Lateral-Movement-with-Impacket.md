@@ -67,7 +67,7 @@ In the next section, we'll be talking a little bit about SMBExec. SMBExec operat
 
 SMBExec
 ---
-As just mentioned above, SMBExec is very similar to PSExec, however, SMBExec doesn't drop a binary file to disk. SMBExec utilized a batch file, along with a temporary file, to execute and relay messages back. Just like PSExec, SMBExec sends input and receives output over the SMB protocol (445/TCP).
+As just mentioned, SMBExec is very similar to PSExec, however, SMBExec doesn't drop a binary file to disk. SMBExec utilized a batch file, along with a temporary file, to execute and relay messages back. Just like PSExec, SMBExec sends input and receives output over the SMB protocol (445/TCP).
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/attacking-windows-impacket/smbexec-diagram.png" alt="">
 
